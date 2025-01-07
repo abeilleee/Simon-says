@@ -70,6 +70,11 @@ legend {
   display: block;
 }
 
+* {
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
