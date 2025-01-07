@@ -15,3 +15,57 @@ export let createElement = (settings) => {
     return element;
 }
 
+
+export let createRadioButton = (settings) => {
+    const {value = '', name = 'level', id = '', text = '', parent, classes = [], checked } = settings;
+
+    let element = document.createElement('input');
+    element.setAttribute('type', 'radio');
+    element.setAttribute('value', value);
+    element.setAttribute('name', name);
+    element.setAttribute('id', id);    
+    
+    let label = createElement({ tag: 'label', text: text, parent, classes: []});
+    label.setAttribute('for', `${id}`);
+
+    if (parent != null) {
+        parent.appendChild(element);
+    }
+
+    if (classes.length > 0) {
+        element.classList.add(...classes);
+    }
+
+    if (checked==='true') {
+        element.setAttribute('checked', 'true');
+    }
+
+    return element;
+}
+
+
+
+// class createInput {
+//     #node = null;
+
+//     constructor({ tag = "input", className = "", id = "", parent}) {
+//         const node = document.createElement(tag);
+//         node.className = className;
+//         node.id = id;
+//         this.#node = node;
+
+//         if (parent != null) {
+//             parent.appendChild(element);
+//         }
+//     }
+
+//     setAttribute(attribute, value) {
+//         this.#node.setAttribute(attribute, value);
+//       }
+
+//       setLabel(tag, value) {
+        
+//       }
+    
+
+    
