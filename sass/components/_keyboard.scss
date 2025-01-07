@@ -1,16 +1,12 @@
 .keyboard__wrapper {
-    display: flex;
-    flex-direction: column;
+    @include flex-column-center;
     align-items: center;
-    justify-content: center;    
     gap: 5px;
 }
 
 .keyboard__row {
-    display: flex;
-    flex-direction: row;
+    @include flex-row-center;
     align-items: center;
-    justify-content: center;
     gap: 3px;
 }
 
