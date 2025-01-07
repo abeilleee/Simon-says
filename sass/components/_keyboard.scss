@@ -2,6 +2,8 @@
     @include flex-column-center;
     align-items: center;
     gap: 5px;
+    height: 320px;
+    padding: 10px;
 }
 
 .keyboard__row {

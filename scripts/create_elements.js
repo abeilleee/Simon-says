@@ -24,7 +24,7 @@ export let createRadioButton = (settings) => {
     element.setAttribute('value', value);
     element.setAttribute('name', name);
     element.setAttribute('id', id);    
-    
+
     let label = createElement({ tag: 'label', text: text, parent, classes: []});
     label.setAttribute('for', `${id}`);
 
@@ -36,8 +36,8 @@ export let createRadioButton = (settings) => {
         element.classList.add(...classes);
     }
 
-    if (checked==='true') {
-        element.setAttribute('checked', 'true');
+    if (checked==='true') { 
+        element.setAttribute('checked', '');
     }
 
     return element;

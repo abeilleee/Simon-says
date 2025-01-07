@@ -31,7 +31,22 @@ const level_hard = createRadioButton({
     value: 'hard'
 });
 
-createKeyboard();
+let keyboard;
+levels_box.addEventListener('click', (event) => {
+    if(event.target.contains(level_easy)) {
+        keyboard = createKeyboardOfDigits();
+    } else if (event.target.contains(level_medium)) {
+        keyboard = createKeyboardofLetters();
+    } else if (event.target.contains(level_hard)) {
+        keyboard = createKeyboard();
+    }
+});
+
+let key = createKeyboardofLetters();
+wrapper.append(key)
+
+
+
 const input = createElement({ tag: 'input', text: '', parent: wrapper });
 const buttons_box = createElement({ tag: 'div', parent: wrapper, classes: ['buttons-box'] });
 const new_game = createElement({ tag: 'button', text: 'New game', parent: buttons_box, classes: ['button'] });
