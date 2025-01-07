@@ -1,5 +1,5 @@
-let createElement = (settings) => {
-    const { tag = 'div', text = '', parent = document.body, classes = [] } = settings;
+export let createElement = (settings) => {
+    const { tag = 'div', text = '', parent, classes = [] } = settings;
 
     let element = document.createElement(tag);
     element.textContent = text;
