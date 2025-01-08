@@ -14,7 +14,9 @@ const title = createElement({ tag: 'h1', text:'The Simon says game', parent: hea
 const main = createElement({ tag: 'main', parent: document.body, classes: ['main'] });
 const containerMain = createElement({ tag: 'div', parent: main, classes: ['container'] });
 export const wrapper = createElement({ tag: 'div', parent: containerMain, classes: ['wrapper'] });
-const buttonStart = createElement({ tag: 'button', text: 'Start', parent: wrapper, classes: ['btn', 'btn--primary'] });
+const wrapperBox = createElement({ tag: 'button', parent: wrapper, classes: ['wrapper__box'] });
+const buttonStart = createElement({ tag: 'button', text: 'Start', parent: wrapperBox, classes: ['btn', 'btn--primary'] });
+const indicatorOfLevel = createElement({ tag: 'p', text: '1/5 round', parent: wrapperBox, classes:['text', 'hidden'] });
 const levelsBox = createElement({ tag: 'div', parent: wrapper, classes: ['level__box'] });
 
 const levelEasy = createRadioButton({
@@ -47,7 +49,7 @@ const input = createElement({ tag: 'input', text: '', parent: wrapper });
 const buttonsBox = createElement({ tag: 'div', parent: wrapper, classes: ['hidden', 'btn__box'] });
 const newGame = createElement({ tag: 'button', text: 'New game', parent: buttonsBox, classes: ['btn'] });
 const repeatSequence = createElement({ tag: 'button', text: 'Repeat sequence', parent: buttonsBox, classes: ['btn'] });
-const indicatorOfLevel = createElement({ tag: 'div', text: '1/5 round', parent: buttonsBox });
+
 
 levelsBox.addEventListener('click', (event) => {
     if (event.target === (levelEasy) ) {
@@ -62,6 +64,7 @@ levelsBox.addEventListener('click', (event) => {
 buttonStart.addEventListener('click', () => {
     buttonsBox.classList.remove('hidden');
     buttonStart.classList.add('hidden');
+    indicatorOfLevel.classList.remove('hidden');
     setAttribute(levelEasy);
     setAttribute(levelMedium);
     setAttribute(levelHard);
