@@ -1,11 +1,15 @@
 export let createElement = (settings) => {
-    const { tag = 'div', text = '', parent, classes = [] } = settings;
+    const { tag = 'div', text = '', parent, classes = [], id } = settings;
 
     let element = document.createElement(tag);
     element.textContent = text;
 
     if (parent != null) {
         parent.append(element);
+    }
+
+    if (id === 'true') {
+        element.setAttribute('id', `${text}`);
     }
 
     if (classes.length > 0) {
