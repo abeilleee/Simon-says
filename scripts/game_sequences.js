@@ -26,7 +26,6 @@ export let getRandomElements = (arr) => {
     for (let i = 0; i < amountOfElements; i++) {
         randomNumber = randomIndex(arr);            //случайное число(случайный индекс элемента с клавиатуры)
         randomElements.push(arr[randomNumber]);     //создаю массив с этими элементами
-        console.log(randomNumber);
     }
     return randomElements;
 }
@@ -48,4 +47,3 @@ export let highlightTheSequence = (arr) => {
 
 
 
-console.log(getRandomElements(letters))
