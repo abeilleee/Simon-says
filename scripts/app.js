@@ -1,10 +1,12 @@
 import { createElement } from "./create_elements.js";
 import { createKeyboardEasy, createKeyboardMedium, createKeyboardHard } from "./keyboard.js";
 import { createRadioButton } from "./create_elements.js";
+import { setAttribute } from "./functions.js";
+import { removeAttribute } from "./functions.js";
 
 
 export const wrapper = createElement({ tag: 'div', parent: document.body, classes: ['wrapper'] });
-const buttonStart = createElement({ tag: 'button', text: 'Start', parent: wrapper, classes: ['btn','btn--primary'] });
+const buttonStart = createElement({ tag: 'button', text: 'Start', parent: wrapper, classes: ['btn', 'btn--primary'] });
 const levelsBox = createElement({ tag: 'form', parent: wrapper, classes: ['level__box'] });
 
 const levelEasy = createRadioButton({
@@ -34,24 +36,36 @@ export const keyboardWrapper = createElement({ tag: 'div', parent: wrapper, clas
 let keyboard_easy = createKeyboardEasy();
 
 const input = createElement({ tag: 'input', text: '', parent: wrapper });
-const buttonsBox = createElement({ tag: 'div', parent: wrapper, classes: ['hidden','btn-box'] });
+const buttonsBox = createElement({ tag: 'div', parent: wrapper, classes: ['hidden', 'btn-box'] });
 const newGame = createElement({ tag: 'button', text: 'New game', parent: buttonsBox, classes: ['btn'] });
 const repeatSequence = createElement({ tag: 'button', text: 'Repeat sequence', parent: buttonsBox, classes: ['btn'] });
 const indicatorOfLevel = createElement({ tag: 'div', text: '1/5 round', parent: buttonsBox });
 
 levelsBox.addEventListener('click', (event) => {
-    if(event.target.contains(levelEasy)) {
+    console.log(event.target)
+    if (event.target === (levelEasy) ) {
         createKeyboardEasy();
-    } else if (event.target.contains(levelMedium)) {
+    } else if (event.target === levelMedium) {
         createKeyboardMedium();
-    } else if (event.target.contains(levelHard)) {
-       createKeyboardHard();
+    } else if (event.target === levelHard) {
+        createKeyboardHard();
     }
 });
 
-buttonStart.addEventListener('click', (event) => {
+buttonStart.addEventListener('click', () => {
     buttonsBox.classList.remove('hidden');
     buttonStart.classList.add('hidden');
+    setAttribute(levelEasy);
+    setAttribute(levelMedium);
+    setAttribute(levelHard);
+});
+
+newGame.addEventListener('click', () => {
+    buttonStart.classList.remove('hidden');
+    removeAttribute(levelEasy);
+    removeAttribute(levelMedium);
+    removeAttribute(levelHard);
+    buttonsBox.classList.add('hidden');
 })
 
 
