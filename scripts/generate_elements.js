@@ -3,7 +3,7 @@ import { createKeyboardEasy, createKeyboardMedium, createKeyboardHard } from "./
 import { createRadioButton } from "./create_elements.js";
 import { setAttribute } from "./functions.js";
 import { removeAttribute } from "./functions.js";
-import { showTheSequence } from "./functions.js";
+
 
 //header
 const header = createElement({ tag: 'header', parent: document.body, classes: ['header'] });
