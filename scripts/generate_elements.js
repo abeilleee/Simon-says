@@ -3,6 +3,7 @@ import { createKeyboardEasy, createKeyboardMedium, createKeyboardHard } from "./
 import { createRadioButton } from "./create_elements.js";
 import { setAttribute } from "./functions.js";
 import { removeAttribute } from "./functions.js";
+import { showTheSequence } from "./functions.js";
 
 //header
 const header = createElement({ tag: 'header', parent: document.body, classes: ['header'] });
@@ -42,7 +43,6 @@ export const levelHard = createRadioButton({
 });
 
 export const keyboardWrapper = createElement({ tag: 'div', parent: wrapper, classes: ['keyboard__wrapper'] });
-let keyboard_easy = createKeyboardEasy();
 
 export const input = createElement({ tag: 'input', text: '', parent: wrapper });
 export const buttonsBox = createElement({ tag: 'div', parent: wrapper, classes: ['hidden', 'btn__box'] });

@@ -2,14 +2,22 @@ import { levelsBox, buttonStart, buttonsBox, indicatorOfLevel, levelEasy, levelM
 import { newGame } from "./generate_elements.js";
 import { setAttribute, removeAttribute } from "./functions.js";
 import { createKeyboardEasy, createKeyboardMedium, createKeyboardHard } from "./keyboard.js";
+import { showTheSequence } from "./functions.js";
+
+let keyboard;
+keyboard = createKeyboardEasy();
+
 
 levelsBox.addEventListener('click', (event) => {
     if (event.target === (levelEasy)) {
-        createKeyboardEasy();
+        keyboard = createKeyboardEasy();
+        // console.log(keyboard);
     } else if (event.target === levelMedium) {
-        createKeyboardMedium();
+        keyboard = createKeyboardMedium();
+        // console.log(keyboard);
     } else if (event.target === levelHard) {
-        createKeyboardHard();
+        keyboard = createKeyboardHard();
+        // console.log(keyboard);
     }
 });
 
@@ -20,6 +28,9 @@ buttonStart.addEventListener('click', () => {
     setAttribute(levelEasy);
     setAttribute(levelMedium);
     setAttribute(levelHard);
+    console.log(keyboard);
+
+    showTheSequence()
 });
 
 newGame.addEventListener('click', () => {
@@ -28,4 +39,8 @@ newGame.addEventListener('click', () => {
     removeAttribute(levelMedium);
     removeAttribute(levelHard);
     buttonsBox.classList.add('hidden');
-})
+});
+
+
+
+

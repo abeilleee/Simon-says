@@ -14,7 +14,7 @@ export let createKeyboardHard = (letters, digits) => {
 
     let numbersRow = createElement({ tag: 'div', parent: keyboardHard, classes: ['keyboard__row'] });
     digits.forEach((elem) => {
-        createElement({ tag: 'div', text: `${elem}`, parent: numbersRow, classes: ['letter'] });
+        createElement({ tag: 'div', text: `${elem}`, parent: numbersRow, classes: ['letter'] ,id:'true'});
     });
 
     let firstRow = createElement({ tag: 'div', parent: keyboardHard, classes: ['keyboard__row'] });
