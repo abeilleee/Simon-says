@@ -4,8 +4,8 @@ import { createRadioButton } from "./create_elements.js";
 
 
 export const wrapper = createElement({ tag: 'div', parent: document.body, classes: ['wrapper'] });
-const buttonStart = createElement({ tag: 'button', text: 'Start', parent: wrapper, classes: ['btn'] });
-const levelsBox = createElement({ tag: 'form', parent: wrapper, classes: ['levels-box'] });
+const buttonStart = createElement({ tag: 'button', text: 'Start', parent: wrapper, classes: ['btn','btn--primary'] });
+const levelsBox = createElement({ tag: 'form', parent: wrapper, classes: ['level__box'] });
 
 const levelEasy = createRadioButton({
     text: 'easy',
@@ -33,6 +33,11 @@ const levelHard = createRadioButton({
 export const keyboardWrapper = createElement({ tag: 'div', parent: wrapper, classes: ['keyboard__wrapper'] });
 let keyboard_easy = createKeyboardEasy();
 
+const input = createElement({ tag: 'input', text: '', parent: wrapper });
+const buttonsBox = createElement({ tag: 'div', parent: wrapper, classes: ['hidden','btn-box'] });
+const newGame = createElement({ tag: 'button', text: 'New game', parent: buttonsBox, classes: ['btn'] });
+const repeatSequence = createElement({ tag: 'button', text: 'Repeat sequence', parent: buttonsBox, classes: ['btn'] });
+const indicatorOfLevel = createElement({ tag: 'div', text: '1/5 round', parent: buttonsBox });
 
 levelsBox.addEventListener('click', (event) => {
     if(event.target.contains(levelEasy)) {
@@ -44,10 +49,15 @@ levelsBox.addEventListener('click', (event) => {
     }
 });
 
-const input = createElement({ tag: 'input', text: '', parent: wrapper });
-const buttons_box = createElement({ tag: 'div', parent: wrapper, classes: ['buttons-box'] });
-const new_game = createElement({ tag: 'button', text: 'New game', parent: buttons_box, classes: ['button'] });
-const repeat_sequence = createElement({ tag: 'button', text: 'Repeat sequence', parent: buttons_box, classes: ['button'] });
-const indicator_of_level = createElement({ tag: 'div', text: '1/5 round', parent: buttons_box });
+buttonStart.addEventListener('click', (event) => {
+    buttonsBox.classList.remove('hidden');
+    buttonStart.classList.add('hidden');
+})
+
+
+
+
+
+
 
 

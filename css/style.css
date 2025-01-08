@@ -93,7 +93,7 @@ legend {
   gap: 20px;
 }
 
-.buttons-box {
+.btn-box {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -101,6 +101,12 @@ legend {
 }
 
 .btn {
+  border: 1px solid #10fcfc;
+  border-radius: 10px;
+  padding: 15px;
+  width: 160px;
+}
+.btn--primary {
   border-radius: 10px;
   background-color: #10fcfc;
   padding: 15px;
@@ -114,7 +120,11 @@ legend {
   cursor: pointer;
 }
 
-.levels-box {
+.hidden {
+  visibility: hidden;
+}
+
+.level__box {
   display: flex;
   flex-direction: row;
   gap: 10px;

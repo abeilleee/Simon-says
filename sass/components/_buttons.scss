@@ -1,0 +1,30 @@
+.btn-box {
+    @include flex-row-center;
+    gap: 10px;
+}
+
+.btn {
+    border: 1px solid #10fcfc;
+    border-radius: 10px;
+    padding: 15px;
+    width: 160px;
+
+    &--primary {
+        border-radius: 10px;
+        background-color: #10fcfc;
+        padding: 15px;
+        width: 160px;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        letter-spacing: 0.05em;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.hidden{
+    visibility: hidden;
+}
