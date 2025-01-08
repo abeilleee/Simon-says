@@ -33,3 +33,5 @@ let game = (arrOfElements) => {
     return randomIndexes;
 }
 
+
+console.log(game(DIGITS));

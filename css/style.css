@@ -76,28 +76,46 @@ legend {
   color: #000000;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1440px;
+  padding: 0 82px;
+  margin: 0 auto;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border: 2px solid rgb(50, 219, 246);
-  max-width: 1000px;
-  max-height: 600px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
+  padding: 30px;
+  width: 100%;
   gap: 20px;
 }
 
-.btn-box {
+.header__box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 60px;
+}
+.header__title {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.btn__box {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 10px;
+  align-items: center;
+  gap: 40px;
 }
 
 .btn {

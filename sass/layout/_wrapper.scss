@@ -2,13 +2,7 @@
     @include flex-column-center;
     align-items: center;
     border: 2px solid rgb(50, 219, 246);
-    max-width: 1000px;
-    max-height: 600px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
+    padding: 30px;
+    width: 100%;
     gap: 20px;
 }

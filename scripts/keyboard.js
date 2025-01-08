@@ -10,7 +10,7 @@ export let createKeyboardHard = (letters, digits) => {
 
     keyboardWrapper.innerHTML = '';
 
-    let keyboardHard = createElement({ tag: 'div', classes: ['keyboard__wrapper'], parent: keyboardWrapper });
+    let keyboardHard = createElement({ tag: 'div', classes: ['keyboard'], parent: keyboardWrapper });
 
     let numbersRow = createElement({ tag: 'div', parent: keyboardHard, classes: ['keyboard__row'] });
     digits.forEach((elem) => {
@@ -40,7 +40,7 @@ export let createKeyboardEasy = (digits) => {
 
     keyboardWrapper.innerHTML = '';
 
-    let keyboardEasy = createElement({ tag: 'div', classes: ['keyboard__wrapper'], parent: keyboardWrapper });
+    let keyboardEasy = createElement({ tag: 'div', classes: ['keyboard'], parent: keyboardWrapper });
 
     let numbersRow = createElement({ tag: 'div', parent: keyboardEasy, classes: ['keyboard__row'] });
     digits.forEach((elem) => {
@@ -58,7 +58,7 @@ export let createKeyboardMedium = (letters) => {
 
     keyboardWrapper.innerHTML = '';
 
-    let keyboardMedium = createElement({ tag: 'div', classes: ['keyboard__wrapper'], parent: keyboardWrapper });
+    let keyboardMedium = createElement({ tag: 'div', classes: ['keyboard'], parent: keyboardWrapper });
 
     let firstRow = createElement({ tag: 'div', parent: keyboardMedium, classes: ['keyboard__row'] });
     for (let i = 0; i < 10; i++) {

@@ -1,0 +1,16 @@
+.header {
+
+    &__box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        padding: 60px;
+    }
+
+    &__title {
+        text-align: center;
+        font-size: 40px;
+        font-weight: 600;
+    }
+}

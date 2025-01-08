@@ -4,10 +4,18 @@ import { createRadioButton } from "./create_elements.js";
 import { setAttribute } from "./functions.js";
 import { removeAttribute } from "./functions.js";
 
+//header
+const header = createElement({ tag: 'header', parent: document.body, classes: ['header'] });
+const container = createElement({ tag: 'div', parent: header, classes: ['container'] });
+const headerBox = createElement({ tag: 'div', parent: container, classes: ['header__box'] });
+const title = createElement({ tag: 'h1', text:'The Simon says game', parent: headerBox, classes: ['header__title'] });
 
-export const wrapper = createElement({ tag: 'div', parent: document.body, classes: ['wrapper'] });
+//main
+const main = createElement({ tag: 'main', parent: document.body, classes: ['main'] });
+const containerMain = createElement({ tag: 'div', parent: main, classes: ['container'] });
+export const wrapper = createElement({ tag: 'div', parent: containerMain, classes: ['wrapper'] });
 const buttonStart = createElement({ tag: 'button', text: 'Start', parent: wrapper, classes: ['btn', 'btn--primary'] });
-const levelsBox = createElement({ tag: 'form', parent: wrapper, classes: ['level__box'] });
+const levelsBox = createElement({ tag: 'div', parent: wrapper, classes: ['level__box'] });
 
 const levelEasy = createRadioButton({
     text: 'easy',
@@ -36,7 +44,7 @@ export const keyboardWrapper = createElement({ tag: 'div', parent: wrapper, clas
 let keyboard_easy = createKeyboardEasy();
 
 const input = createElement({ tag: 'input', text: '', parent: wrapper });
-const buttonsBox = createElement({ tag: 'div', parent: wrapper, classes: ['hidden', 'btn-box'] });
+const buttonsBox = createElement({ tag: 'div', parent: wrapper, classes: ['hidden', 'btn__box'] });
 const newGame = createElement({ tag: 'button', text: 'New game', parent: buttonsBox, classes: ['btn'] });
 const repeatSequence = createElement({ tag: 'button', text: 'Repeat sequence', parent: buttonsBox, classes: ['btn'] });
 const indicatorOfLevel = createElement({ tag: 'div', text: '1/5 round', parent: buttonsBox });
