@@ -38,9 +38,9 @@ levelsBox.addEventListener('click', (event) => {
     if(event.target.contains(levelEasy)) {
         createKeyboardEasy();
     } else if (event.target.contains(levelMedium)) {
-        keyboard = createKeyboardMedium();
+        createKeyboardMedium();
     } else if (event.target.contains(levelHard)) {
-        keyboard = createKeyboardHard();
+       createKeyboardHard();
     }
 });
 
