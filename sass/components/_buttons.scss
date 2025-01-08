@@ -26,6 +26,10 @@
         color: #bebebe;
     }   
 
+    &--hide{
+        display: none;
+    }
+
     &:hover {
         cursor: pointer;
     }

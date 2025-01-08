@@ -48,6 +48,7 @@ export const input = createElement({ tag: 'input', text: '', parent: wrapper });
 export const buttonsBox = createElement({ tag: 'div', parent: wrapper, classes: ['hidden', 'btn__box'] });
 export const newGame = createElement({ tag: 'button', text: 'New game', parent: buttonsBox, classes: ['btn'] });
 export const repeatSequence = createElement({ tag: 'button', text: 'Repeat sequence', parent: buttonsBox, classes: ['btn'] });
+export const nextBtn = createElement({ tag: 'button', text: 'Next', parent: buttonsBox, classes: ['btn--hide', 'btn'] });
 export const indicatorOfLevel = createElement({ tag: 'p', text: '1/5 round', parent: buttonsBox, classes:['text'] });
 
 

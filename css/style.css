@@ -139,6 +139,9 @@ legend {
   border: 1px solid #bebebe;
   color: #bebebe;
 }
+.btn--hide {
+  display: none;
+}
 .btn:hover {
   cursor: pointer;
 }
