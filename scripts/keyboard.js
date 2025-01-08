@@ -1,72 +1,78 @@
 import { createElement } from "./create_elements.js";
-import { wrapper } from "./app.js";
+import { keyboardWrapper } from "./app.js";
 
-export let createKeyboard = (letters, digits) => {
+export let createKeyboardHard = (letters, digits) => {
     letters = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P",
         "A", "S", "D", "F", "G", "H", "J", "K", "L",
         "Z", "X", "C", "V", "B", "N", "M"];
 
     digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
-    let keyboardWrapper = createElement({ tag: 'div', classes: ['keyboard__wrapper'] });
+    keyboardWrapper.innerHTML = '';
 
-    let numbersRow = createElement({ tag: 'div', parent: keyboardWrapper, classes: ['keyboard__row'] });
+    let keyboardHard = createElement({ tag: 'div', classes: ['keyboard__wrapper'], parent: keyboardWrapper });
+
+    let numbersRow = createElement({ tag: 'div', parent: keyboardHard, classes: ['keyboard__row'] });
     digits.forEach((elem) => {
-        let digit = createElement({ tag: 'div', text: `${elem}`, parent: numbersRow, classes: ['letter'] });
+        createElement({ tag: 'div', text: `${elem}`, parent: numbersRow, classes: ['letter'] });
     });
 
-    let firstRow = createElement({ tag: 'div', parent: keyboardWrapper, classes: ['keyboard__row'] });
+    let firstRow = createElement({ tag: 'div', parent: keyboardHard, classes: ['keyboard__row'] });
     for (let i = 0; i < 10; i++) {
-        let letter = createElement({ tag: 'div', text: `${letters[i]}`, parent: firstRow, classes: ['letter'] });
+        createElement({ tag: 'div', text: `${letters[i]}`, parent: firstRow, classes: ['letter'] });
     }
 
-    let secondRow = createElement({ tag: 'div', parent: keyboardWrapper, classes: ['keyboard__row'] });
+    let secondRow = createElement({ tag: 'div', parent: keyboardHard, classes: ['keyboard__row'] });
     for (let i = 10; i < 19; i++) {
-        let letter = createElement({ tag: 'div', text: `${letters[i]}`, parent: secondRow, classes: ['letter'] });
+        createElement({ tag: 'div', text: `${letters[i]}`, parent: secondRow, classes: ['letter'] });
     }
 
-    let thirdRow = createElement({ tag: 'div', parent: keyboardWrapper, classes: ['keyboard__row'] });
+    let thirdRow = createElement({ tag: 'div', parent: keyboardHard, classes: ['keyboard__row'] });
     for (let i = 19; i < 26; i++) {
-        let letter = createElement({ tag: 'div', text: `${letters[i]}`, parent: thirdRow, classes: ['letter'] });
+        createElement({ tag: 'div', text: `${letters[i]}`, parent: thirdRow, classes: ['letter'] });
     }
-    return keyboardWrapper;
+    return keyboardHard;
 }
 
 
-export let createKeyboardOfDigits = (digits) => {
+export let createKeyboardEasy = (digits) => {
     digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
-    let keyboardWrapper = createElement({ tag: 'div', classes: ['keyboard__wrapper'] });
+    keyboardWrapper.innerHTML = '';
 
-    let numbersRow = createElement({ tag: 'div', parent: keyboardWrapper, classes: ['keyboard__row'] });
+    let keyboardEasy = createElement({ tag: 'div', classes: ['keyboard__wrapper'], parent: keyboardWrapper });
+
+    let numbersRow = createElement({ tag: 'div', parent: keyboardEasy, classes: ['keyboard__row'] });
     digits.forEach((elem) => {
-        let digit = createElement({ tag: 'div', text: `${elem}`, parent: numbersRow, classes: ['letter'] });
+       createElement({ tag: 'div', text: `${elem}`, parent: numbersRow, classes: ['letter'] });
     });
 
-    return keyboardWrapper;
+    return keyboardEasy;
 }
 
 
-export let createKeyboardofLetters = (letters) => {
-    letters = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
-        "a", "s", "d", "f", "g", "h", "j", "k", "l",
-        "z", "x", "c", "v", "b", "n", "m"];
+export let createKeyboardMedium = (letters) => {
+    letters = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P",
+        "A", "S", "D", "F", "G", "H", "J", "K", "L",
+        "Z", "X", "C", "V", "B", "N", "M"];
 
-    let keyboardWrapper = createElement({ tag: 'div', classes: ['keyboard__wrapper'] });
+    keyboardWrapper.innerHTML = '';
 
-    let firstRow = createElement({ tag: 'div', parent: keyboardWrapper, classes: ['keyboard__row'] });
+    let keyboardMedium = createElement({ tag: 'div', classes: ['keyboard__wrapper'], parent: keyboardWrapper });
+
+    let firstRow = createElement({ tag: 'div', parent: keyboardMedium, classes: ['keyboard__row'] });
     for (let i = 0; i < 10; i++) {
-        let letter = createElement({ tag: 'div', text: `${letters[i]}`, parent: firstRow, classes: ['letter'] });
+        createElement({ tag: 'div', text: `${letters[i]}`, parent: firstRow, classes: ['letter'] });
     }
 
-    let secondRow = createElement({ tag: 'div', parent: keyboardWrapper, classes: ['keyboard__row'] });
+    let secondRow = createElement({ tag: 'div', parent: keyboardMedium, classes: ['keyboard__row'] });
     for (let i = 10; i < 19; i++) {
-        let letter = createElement({ tag: 'div', text: `${letters[i]}`, parent: secondRow, classes: ['letter'] });
+        createElement({ tag: 'div', text: `${letters[i]}`, parent: secondRow, classes: ['letter'] });
     }
 
-    let thirdRow = createElement({ tag: 'div', parent: keyboardWrapper, classes: ['keyboard__row'] });
+    let thirdRow = createElement({ tag: 'div', parent: keyboardMedium, classes: ['keyboard__row'] });
     for (let i = 19; i < 26; i++) {
-        let letter = createElement({ tag: 'div', text: `${letters[i]}`, parent: thirdRow, classes: ['letter'] });
+        createElement({ tag: 'div', text: `${letters[i]}`, parent: thirdRow, classes: ['letter'] });
     }
-    return keyboardWrapper;
+    return keyboardMedium;
 }

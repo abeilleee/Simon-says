@@ -5,7 +5,7 @@ export let createElement = (settings) => {
     element.textContent = text;
 
     if (parent != null) {
-        parent.appendChild(element);
+        parent.append(element);
     }
 
     if (classes.length > 0) {
@@ -14,7 +14,6 @@ export let createElement = (settings) => {
 
     return element;
 }
-
 
 export let createRadioButton = (settings) => {
     const {value = '', name = 'level', id = '', text = '', parent, classes = [], checked } = settings;
@@ -42,30 +41,6 @@ export let createRadioButton = (settings) => {
 
     return element;
 }
-
-
-
-// class createInput {
-//     #node = null;
-
-//     constructor({ tag = "input", className = "", id = "", parent}) {
-//         const node = document.createElement(tag);
-//         node.className = className;
-//         node.id = id;
-//         this.#node = node;
-
-//         if (parent != null) {
-//             parent.appendChild(element);
-//         }
-//     }
-
-//     setAttribute(attribute, value) {
-//         this.#node.setAttribute(attribute, value);
-//       }
-
-//       setLabel(tag, value) {
-        
-//       }
     
 
     

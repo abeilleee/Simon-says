@@ -2,14 +2,13 @@
     @include flex-column-center;
     align-items: center;
     gap: 5px;
-    height: 320px;
-    padding: 10px;
+    height: 280px;
 }
 
 .keyboard__row {
     @include flex-row-center;
     align-items: center;
-    gap: 3px;
+    gap: 5px;
 }
 
 .letter{
