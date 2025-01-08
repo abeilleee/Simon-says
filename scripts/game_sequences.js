@@ -31,9 +31,11 @@ export let getRandomElements = (arr) => {
 }
 
 //'подсветить' поочереди случайный эл-ты с клавиатуры (arr = массив со случайными элементами с клавиатуры)
-export let highlightTheSequence = (arr) => {
+export let highlightTheSequence = (arr, btn) => {
     let time = 1000;
-    for (let i = 0; i < arr.length; i++) {
+    btn.setAttribute('disabled', '');
+    btn.classList.add('btn--disabled');                              //делаю неактивной кнопку new game
+    for (let i = 0; i < arr.length; i++) {        
         let element = document.getElementById(`${arr[i]}`);
         setTimeout(() => {
             element.style.backgroundColor = 'violet';
@@ -43,6 +45,10 @@ export let highlightTheSequence = (arr) => {
         }, time);
         time += 1000;
     }
+    setTimeout(() => {                                               //возвращаю активность кнопке new game после отработки функции
+        btn.removeAttribute('disabled', '');
+        btn.classList.remove('btn--disabled'); 
+    }, time);
 }
 
 

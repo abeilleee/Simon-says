@@ -21,8 +21,17 @@
         letter-spacing: 0.05em;
     }
 
+    &--disabled{
+        border: 1px solid #bebebe;
+        color: #bebebe;
+    }   
+
     &:hover {
         cursor: pointer;
+    }
+
+    &--disabled:hover{
+        cursor:default;
     }
 }
 

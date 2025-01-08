@@ -135,8 +135,15 @@ legend {
   font-size: 20px;
   letter-spacing: 0.05em;
 }
+.btn--disabled {
+  border: 1px solid #bebebe;
+  color: #bebebe;
+}
 .btn:hover {
   cursor: pointer;
+}
+.btn--disabled:hover {
+  cursor: default;
 }
 
 .hidden {
