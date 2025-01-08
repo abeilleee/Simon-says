@@ -30,12 +30,17 @@ export let getRandomElements = (arr) => {
     return randomElements;
 }
 
-//'подсветить' поочереди случайный эл-ты с клавиатуры (arr = массив со случайными элементами с клавиатуры)
-export let highlightTheSequence = (arr, btn) => {
+//'подсветить' поочереди случайные эл-ты с клавиатуры (arr = массив со случайными элементами с клавиатуры)
+export let highlightTheSequence = (arr, btn1, btn2) => {
     let time = 1000;
-    btn.setAttribute('disabled', '');
-    btn.classList.add('btn--disabled');                              //делаю неактивной кнопку new game
-    for (let i = 0; i < arr.length; i++) {        
+    btn1.setAttribute('disabled', '');
+    btn1.classList.add('btn--disabled');
+    if (btn2) {
+        btn2.setAttribute('disabled', '');
+        btn2.classList.add('btn--disabled');
+    }
+    //делаю неактивной кнопку new game
+    for (let i = 0; i < arr.length; i++) {
         let element = document.getElementById(`${arr[i]}`);
         setTimeout(() => {
             element.style.backgroundColor = 'violet';
@@ -46,8 +51,13 @@ export let highlightTheSequence = (arr, btn) => {
         time += 1000;
     }
     setTimeout(() => {                                               //возвращаю активность кнопке new game после отработки функции
-        btn.removeAttribute('disabled', '');
-        btn.classList.remove('btn--disabled'); 
+        btn1.removeAttribute('disabled', '');
+        btn1.classList.remove('btn--disabled');
+        if (btn2) {
+            btn2.removeAttribute('disabled', '');
+            btn2.classList.remove('btn--disabled');
+        }
+
     }, time);
 }
 

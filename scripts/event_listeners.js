@@ -1,5 +1,7 @@
-import { levelsBox, buttonStart, buttonsBox, indicatorOfLevel, levelEasy, levelMedium, levelHard } from "./generate_elements.js";
-import { newGame } from "./generate_elements.js";
+import {
+    levelsBox, buttonStart, buttonsBox, indicatorOfLevel,
+    levelEasy, levelMedium, levelHard, repeatSequence, newGame
+} from "./generate_elements.js";
 import { setAttribute, removeAttribute } from "./functions.js";
 import { createKeyboardEasy, createKeyboardMedium, createKeyboardHard } from "./keyboard.js";
 import { highlightTheSequence } from "./game_sequences.js";
@@ -9,6 +11,7 @@ import { letters, digits, lettersAndDigits } from "./keyboard.js";
 let keyboard;
 keyboard = createKeyboardEasy();
 let keyboardElements = digits;
+let randomElements;
 
 
 levelsBox.addEventListener('click', (event) => {
@@ -32,9 +35,9 @@ buttonStart.addEventListener('click', () => {
     setAttribute(levelMedium);
     setAttribute(levelHard);
 
-    let randomElements = getRandomElements(keyboardElements);
+    randomElements = getRandomElements(keyboardElements);
     console.log(randomElements);
-    highlightTheSequence(randomElements, newGame);
+    highlightTheSequence(randomElements, newGame, repeatSequence);
 });
 
 newGame.addEventListener('click', (event) => {
@@ -43,6 +46,12 @@ newGame.addEventListener('click', (event) => {
     removeAttribute(levelMedium);
     removeAttribute(levelHard);
     buttonsBox.classList.add('hidden');
+});
+
+repeatSequence.addEventListener('click', (event) => {
+    repeatSequence.setAttribute('disabled', '');
+    repeatSequence.classList.add('btn--disabled');
+    highlightTheSequence(randomElements, newGame);
 });
 
 
