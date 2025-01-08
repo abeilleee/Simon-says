@@ -50,7 +50,6 @@ const repeatSequence = createElement({ tag: 'button', text: 'Repeat sequence', p
 const indicatorOfLevel = createElement({ tag: 'div', text: '1/5 round', parent: buttonsBox });
 
 levelsBox.addEventListener('click', (event) => {
-    console.log(event.target)
     if (event.target === (levelEasy) ) {
         createKeyboardEasy();
     } else if (event.target === levelMedium) {

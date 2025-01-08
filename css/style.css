@@ -149,15 +149,17 @@ legend {
   justify-content: space-between;
 }
 
-.keyboard__wrapper {
+.keyboard {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   gap: 5px;
+}
+.keyboard__wrapper {
+  display: flex;
+  align-items: center;
   height: 280px;
 }
-
 .keyboard__row {
   display: flex;
   flex-direction: row;

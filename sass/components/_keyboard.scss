@@ -1,21 +1,25 @@
-.keyboard__wrapper {
+.keyboard {
     @include flex-column-center;
-    align-items: center;
     gap: 5px;
-    height: 280px;
+
+    &__wrapper {
+        display: flex;
+        align-items: center;
+        height: 280px;
+    }
+
+    &__row {
+        @include flex-row-center;
+        align-items: center;
+        gap: 5px;
+    }
 }
 
-.keyboard__row {
-    @include flex-row-center;
-    align-items: center;
-    gap: 5px;
-}
-
-.letter{
+.letter {
     border: 1px solid black;
     padding: 20px;
 
-    &:hover{
+    &:hover {
         cursor: pointer;
     }
 }

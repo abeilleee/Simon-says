@@ -1,5 +1,5 @@
 import { createElement } from "./create_elements.js";
-import { keyboardWrapper } from "./app.js";
+import { keyboardWrapper } from "./generate_elements.js";
 
 export let createKeyboardHard = (letters, digits) => {
     letters = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P",
