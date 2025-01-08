@@ -1,6 +1,6 @@
 import {
     levelsBox, buttonStart, buttonsBox, indicatorOfLevel,
-    levelEasy, levelMedium, levelHard, repeatSequence, newGame
+    levelEasy, levelMedium, levelHard, repeatSequence, newGame, nextBtn
 } from "./generate_elements.js";
 import { setAttribute, removeAttribute } from "./functions.js";
 import { createKeyboardEasy, createKeyboardMedium, createKeyboardHard } from "./keyboard.js";
@@ -52,6 +52,16 @@ repeatSequence.addEventListener('click', (event) => {
     repeatSequence.setAttribute('disabled', '');
     repeatSequence.classList.add('btn--disabled');
     highlightTheSequence(randomElements, newGame);
+});
+
+let level = 1;
+
+
+nextBtn.addEventListener('click', (event) => {
+    if (level < 5) {
+        level+=1;   
+        indicatorOfLevel.textContent = `${level}/5 round`; 
+    }    
 });
 
 
