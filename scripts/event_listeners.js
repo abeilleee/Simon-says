@@ -12,6 +12,7 @@ let keyboard;
 keyboard = createKeyboardEasy();
 let keyboardElements = digits;
 let randomElements;
+let round = 1;
 
 
 levelsBox.addEventListener('click', (event) => {
@@ -35,7 +36,7 @@ buttonStart.addEventListener('click', () => {
     setAttribute(levelMedium);
     setAttribute(levelHard);
 
-    randomElements = getRandomElements(keyboardElements);
+    randomElements = getRandomElements(keyboardElements, round);
     console.log(randomElements);
     highlightTheSequence(randomElements, newGame, repeatSequence);
 });
@@ -54,14 +55,19 @@ repeatSequence.addEventListener('click', (event) => {
     highlightTheSequence(randomElements, newGame);
 });
 
-let level = 1;
+
 
 
 nextBtn.addEventListener('click', (event) => {
-    if (level < 5) {
-        level+=1;   
-        indicatorOfLevel.textContent = `${level}/5 round`; 
+    if (round < 5) {
+        round+=1;   
+        indicatorOfLevel.textContent = `${round}/5 round`;
+        randomElements = getRandomElements(keyboardElements, round);
+        highlightTheSequence(randomElements, newGame);
     }    
+    if (round === 5) {
+        nextBtn.classList.add('btn--disabled');
+    }
 });
 
 
