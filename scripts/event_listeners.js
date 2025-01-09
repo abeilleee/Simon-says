@@ -88,16 +88,22 @@ document.addEventListener('keydown', (event) => {
             if ((/[a-zA-Z]/).test(event.key)) {
                 pressedKeys.push(event.key.toUpperCase());
                 input.value += event.key.toUpperCase();
+                document.getElementById(`${event.key.toUpperCase()}`).style.backgroundColor = 'red';
             } else if (+event.key >= 0 && +event.key <= 9) {
                 pressedKeys.push(+(event.key));
                 input.value += event.key;
+                document.getElementById(`${event.key}`).style.backgroundColor = 'red';
             }
         }
         console.log(pressedKeys);
+        event.key.style.backgroundColor = 'red'
     }
-
 }
 );
+
+document.addEventListener('keyup', (event) => {
+    document.getElementById(`${event.key.toUpperCase()}`).style.backgroundColor = '';
+});
 
 
 
