@@ -44,8 +44,9 @@ export const levelHard = createRadioButton({
 
 export const keyboardWrapper = createElement({ tag: 'div', parent: wrapper, classes: ['keyboard__wrapper'] });
 
-export const input = createElement({ tag: 'input', text: '', parent: wrapper });
-export const buttonsBox = createElement({ tag: 'div', parent: wrapper, classes: ['hidden', 'btn__box'] });
+export const input = createElement({ tag: 'input', text: '', parent: wrapper, classes: ['input', 'btn--hide'] });
+input.setAttribute('readonly', '');
+export const buttonsBox = createElement({ tag: 'div', parent: wrapper, classes: ['btn--hide', 'btn__box'] });
 export const newGame = createElement({ tag: 'button', text: 'New game', parent: buttonsBox, classes: ['btn'] });
 export const repeatSequence = createElement({ tag: 'button', text: 'Repeat sequence', parent: buttonsBox, classes: ['btn'] });
 export const nextBtn = createElement({ tag: 'button', text: 'Next', parent: buttonsBox, classes: ['btn--hide', 'btn'] });

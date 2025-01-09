@@ -185,4 +185,8 @@ legend {
   cursor: pointer;
 }
 
+.input {
+  border: 1px solid #2feaf8;
+}
+
 /*# sourceMappingURL=style.css.map */

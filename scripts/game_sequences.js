@@ -32,8 +32,8 @@ export let getRandomElements = (arr, round) => {
 }
 
 //'подсветить' поочереди случайные эл-ты с клавиатуры (arr = массив со случайными элементами с клавиатуры)
-export let highlightTheSequence = (arr, btn1, btn2) => {
-    let time = 1000;
+export let highlightTheSequence = (arr, time, btn1, btn2) => {
+    time = 1000;
     btn1.setAttribute('disabled', '');
     btn1.classList.add('btn--disabled');
     if (btn2) {
