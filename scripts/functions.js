@@ -17,5 +17,3 @@ export let randomIndex = (arr) => {
 
 
 
-
-
