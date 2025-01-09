@@ -1,10 +1,15 @@
 export let createElement = (settings) => {
-    const { tag = 'div', text = '', parent, classes = [], id } = settings;
+    const { tag = 'div', text = '', parent, removeChildren, classes = [], id } = settings;
 
     let element = document.createElement(tag);
     element.textContent = text;
 
     if (parent != null) {
+        if(removeChildren != null) {
+            while(parent.firstChild) {
+                parent.removeChild(parent.firstChild)
+            }
+        }
         parent.append(element);
     }
 
