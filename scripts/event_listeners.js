@@ -8,6 +8,7 @@ import { highlightTheSequence } from "./game_sequences.js";
 import { getRandomElements } from "./game_sequences.js";
 import { letters, digits, lettersAndDigits } from "./keyboard.js";
 
+
 let keyboard;
 keyboard = createKeyboardEasy();
 let keyboardElements = digits;
@@ -40,7 +41,6 @@ buttonStart.addEventListener('click', () => {
     randomElements = getRandomElements(keyboardElements, round);
     console.log(randomElements);
     highlightTheSequence({ arr: randomElements, buttons: [newGame, repeatSequence], btn: input });
-    console.log('time: ' + time)
 });
 
 newGame.addEventListener('click', (event) => {
@@ -88,7 +88,7 @@ document.addEventListener('keydown', (event) => {
             if ((/[a-zA-Z]/).test(event.key)) {
                 pressedKeys.push(event.key.toUpperCase());
                 input.value += event.key.toUpperCase();
-                document.getElementById(`${event.key.toUpperCase()}`).style.backgroundColor = 'red';
+                document.getElementById(`${event.key.toUpperCase()}`).style.backgroundColor = 'red'; //подсветка клавиш при нажатии
             } else if (+event.key >= 0 && +event.key <= 9) {
                 pressedKeys.push(+(event.key));
                 input.value += event.key;
@@ -102,8 +102,21 @@ document.addEventListener('keydown', (event) => {
 );
 
 document.addEventListener('keyup', (event) => {
-    document.getElementById(`${event.key.toUpperCase()}`).style.backgroundColor = '';
+    document.getElementById(`${event.key.toUpperCase()}`).style.backgroundColor = ''; //отключение подсветки клавиш при нажатии
 });
+
+document.addEventListener('mousedown', (event) => {
+    if (!input.disabled) {
+        if (event.target.classList.contains('letter')) {
+            event.target.style.backgroundColor = 'blue';
+        }
+    }
+});
+
+document.addEventListener('mouseup', (event) => {
+    event.target.style.backgroundColor = '';
+});
+
 
 
 
