@@ -89,6 +89,7 @@ nextBtn.addEventListener('click', () => {
 let count = 0;
 // обработчик события клавиатуры
 let handleKeyPress = (event) => {
+    console.log('count = ' + count);
     if (!eventHandled) {                                                       //обработка для первого обнаруженного события (мышь или клавиатура)
         eventHandled = true;
         if (!keyPressed) {                                                     //обработка для первого обнаруженного нажатия клавиши
@@ -130,7 +131,7 @@ let handleKeyPress = (event) => {
     console.log('pressed keys: ' + pressedKeys)
     checkTheInputSequence(pressedKeys, randomElements, count, feedbackWrong);
     count++;
-    console.log('count= ' + count);
+    
 }
 
 // обработчик события мыши

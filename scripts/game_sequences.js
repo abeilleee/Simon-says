@@ -12,7 +12,7 @@ export let getRandomElements = (arr, round) => {
     let amountOfElements = 3; //удалить
 
     if (round === 1) {
-        amountOfElements = 2;
+        amountOfElements = 3;
     } else if (round === 2) {
         amountOfElements = 4;
     } else if (round === 3) {

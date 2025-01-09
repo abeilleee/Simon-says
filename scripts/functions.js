@@ -13,10 +13,11 @@ export let randomIndex = (arr) => {
 
 //проверка введенной последовательности
 export let checkTheInputSequence = (arr, randomElements, count, message) => {
-    if (arr[count] !== randomElements[count]) {
-        message.classList.remove('hidden');
-    } else if (arr[count] === randomElements[count]) {
-        console.log('right!')
+    for (let i = 0; i < randomElements.length; i++) {
+        if (arr[count] != randomElements[count]) {
+            message.classList.remove('hidden');
+            break;
+        }
     }
 }
 
