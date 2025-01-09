@@ -189,4 +189,10 @@ legend {
   border: 1px solid #2feaf8;
 }
 
+.feedback {
+  font-size: 30px;
+  color: red;
+  justify-content: center;
+}
+
 /*# sourceMappingURL=style.css.map */

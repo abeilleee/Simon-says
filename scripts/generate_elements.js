@@ -17,6 +17,7 @@ const containerMain = createElement({ tag: 'div', parent: main, classes: ['conta
 export const wrapper = createElement({ tag: 'div', parent: containerMain, classes: ['wrapper'] });
 export const wrapperBox = createElement({ tag: 'button', parent: wrapper, classes: ['wrapper__box'] });
 export const buttonStart = createElement({ tag: 'button', text: 'Start', parent: wrapperBox, classes: ['btn', 'btn--primary'] });
+export const feedbackWrong = createElement({ tag: 'div', text: 'Wrong!', parent: wrapperBox, classes: ['feedback', 'hidden'] });
 export const levelsBox = createElement({ tag: 'div', parent: wrapper, classes: ['level__box'] });
 
 export const levelEasy = createRadioButton({
@@ -52,7 +53,6 @@ export const newGame = createElement({ tag: 'button', text: 'New game', parent: 
 export const repeatSequence = createElement({ tag: 'button', text: 'Repeat sequence', parent: buttonsBox, classes: ['btn'] });
 export const nextBtn = createElement({ tag: 'button', text: 'Next', parent: buttonsBox, classes: ['btn--hide', 'btn'] });
 export const indicatorOfRound = createElement({ tag: 'p', text: `1/5 round`, parent: buttonsBox, classes: ['text'] });
-
 
 
 

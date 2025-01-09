@@ -1,12 +1,13 @@
 import {
     levelsBox, buttonStart, buttonsBox, indicatorOfRound,
-    levelEasy, levelMedium, levelHard, repeatSequence, newGame, nextBtn, input
+    levelEasy, levelMedium, levelHard, repeatSequence, newGame, nextBtn, input, feedbackWrong
 } from "./generate_elements.js";
 import { setAttribute, removeAttribute } from "./functions.js";
 import { createKeyboardEasy, createKeyboardMedium, createKeyboardHard } from "./keyboard.js";
 import { highlightTheSequence } from "./game_sequences.js";
 import { getRandomElements } from "./game_sequences.js";
 import { letters, digits, lettersAndDigits } from "./keyboard.js";
+import { checkTheInputSequence } from "./functions.js";
 
 let keyboardElements = digits;
 let randomElements;
@@ -14,6 +15,7 @@ let round = 1;
 let keyboard;
 let level = 'easy';
 let pressedKeys = [];
+
 let eventHandled = false;   //флаг для проверки обработки только одного события
 let keyPressed = false;     //флаг для обработки только первого обнаруженного нажатия
 
@@ -51,6 +53,7 @@ buttonStart.addEventListener('click', () => {
 
 newGame.addEventListener('click', () => {
     buttonStart.classList.remove('hidden');
+    feedbackWrong.classList.add('hidden');
     removeAttribute(levelEasy);
     removeAttribute(levelMedium);
     removeAttribute(levelHard);
@@ -59,6 +62,9 @@ newGame.addEventListener('click', () => {
     round = 1;
     indicatorOfRound.textContent = `${round}/5 round`;
     input.value = '';
+    pressedKeys = [];
+    count = 0;
+
 });
 
 //логика при нажатии кнопки повторение последовательности
@@ -69,6 +75,7 @@ repeatSequence.addEventListener('click', () => {
 });
 
 nextBtn.addEventListener('click', () => {
+    repeatSequence.classList.remove('btn--disabled');
     if (round < 5) {
         round += 1;
         indicatorOfRound.textContent = `${round}/5 round`;                  //смена индикатора раундов
@@ -79,7 +86,7 @@ nextBtn.addEventListener('click', () => {
         nextBtn.classList.add('btn--disabled');
     }
 });
-
+let count = 0;
 // обработчик события клавиатуры
 let handleKeyPress = (event) => {
     if (!eventHandled) {                                                       //обработка для первого обнаруженного события (мышь или клавиатура)
@@ -89,6 +96,7 @@ let handleKeyPress = (event) => {
 
             const isAlphanumeric = /^[a-zA-Z0-9\u0400-\u04FF\u0500-\u052F]$/;  //проверка на буквы и цифры
             if (isAlphanumeric.test(event.key)) {
+
                 if (!input.disabled) {                                         //пока работает функция highlightTheSequence
                     if (level === 'easy') {                                    //в зависимости от уровня игнорируются другие клавиши
                         if (+event.key >= 0 && +event.key <= 9) {
@@ -119,6 +127,10 @@ let handleKeyPress = (event) => {
             }
         }
     }
+    console.log('pressed keys: ' + pressedKeys)
+    checkTheInputSequence(pressedKeys, randomElements, count, feedbackWrong);
+    count++;
+    console.log('count= ' + count);
 }
 
 // обработчик события мыши
@@ -129,9 +141,18 @@ let handleMouseClick = (event) => {
             if (event.target.classList.contains('letter')) {
                 event.target.style.backgroundColor = 'blue';
                 input.value += event.target.id;
+                if ((/[a-zA-Z]/).test(event.target.id)) {
+                    pressedKeys.push(event.target.id.toUpperCase());
+                } else if (event.target.id >= 0 && event.target.id <= 9) {
+                    pressedKeys.push(+event.target.id);
+                }
             }
         }
     }
+    // console.log('pressed keys: ' + pressedKeys)
+    // checkTheInputSequence(pressedKeys, randomElements, count, feedbackWrong);
+    // count++;
+    // console.log('count= ' + count);
 }
 
 // функция для сброса флага при отпускании клавиши или кнопки мыши
