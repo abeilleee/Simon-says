@@ -27,6 +27,7 @@ export let getRandomElements = (arr, round) => {
         randomNumber = randomIndex(arr);            //случайное число(случайный индекс элемента с клавиатуры)
         randomElements.push(arr[randomNumber]);     //создаю массив с этими элементами
     }
+    console.log('randomElements: '+ randomElements);
     return randomElements;
 }
 
