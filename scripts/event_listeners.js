@@ -47,6 +47,9 @@ newGame.addEventListener('click', (event) => {
     removeAttribute(levelMedium);
     removeAttribute(levelHard);
     buttonsBox.classList.add('hidden');
+    round = 1;
+    indicatorOfLevel.textContent = `${round}/5 round`;
+    console.log(round)
 });
 
 repeatSequence.addEventListener('click', (event) => {
@@ -55,7 +58,7 @@ repeatSequence.addEventListener('click', (event) => {
     highlightTheSequence(randomElements, newGame);
 });
 
-
+console.log(round)
 
 
 nextBtn.addEventListener('click', (event) => {

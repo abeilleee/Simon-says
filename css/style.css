@@ -91,10 +91,8 @@ legend {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid rgb(50, 219, 246);
   padding: 30px;
   width: 100%;
-  height: 700px;
   gap: 20px;
 }
 
