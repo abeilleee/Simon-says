@@ -8,14 +8,13 @@ import { highlightTheSequence } from "./game_sequences.js";
 import { getRandomElements } from "./game_sequences.js";
 import { letters, digits, lettersAndDigits } from "./keyboard.js";
 
-
-let keyboard;
-keyboard = createKeyboardEasy();
 let keyboardElements = digits;
 let randomElements;
 let round = 1;
 
+keyboard = createKeyboardEasy();
 
+//прорисовка клавиатуры в зависимости от выбранного уровня
 levelsBox.addEventListener('click', (event) => {
     if (event.target === (levelEasy)) {
         keyboard = createKeyboardEasy();
@@ -56,19 +55,17 @@ newGame.addEventListener('click', (event) => {
     input.value = '';
 });
 
+//логика при нажатии кнопки повторение последовательности
 repeatSequence.addEventListener('click', (event) => {
     repeatSequence.setAttribute('disabled', '');
     repeatSequence.classList.add('btn--disabled');
     highlightTheSequence({ arr: randomElements, buttons: [newGame], btn: input });
 });
 
-console.log(round)
-
-
 nextBtn.addEventListener('click', (event) => {
     if (round < 5) {
         round += 1;
-        indicatorOfLevel.textContent = `${round}/5 round`;
+        indicatorOfLevel.textContent = `${round}/5 round`;              //смена индикатора раундов
         randomElements = getRandomElements(keyboardElements, round);
         highlightTheSequence(randomElements, newGame);
     }
@@ -76,7 +73,6 @@ nextBtn.addEventListener('click', (event) => {
         nextBtn.classList.add('btn--disabled');
     }
 });
-
 
 let pressedKeys = [];
 
@@ -95,16 +91,16 @@ document.addEventListener('keydown', (event) => {
                 document.getElementById(`${event.key}`).style.backgroundColor = 'red';
             }
         }
-        console.log(pressedKeys);
         event.key.style.backgroundColor = 'red'
     }
-}
-);
-
-document.addEventListener('keyup', (event) => {
-    document.getElementById(`${event.key.toUpperCase()}`).style.backgroundColor = ''; //отключение подсветки клавиш при нажатии
 });
 
+//отключение подсветки клавиш при нажатии
+document.addEventListener('keyup', (event) => {
+    document.getElementById(`${event.key.toUpperCase()}`).style.backgroundColor = '';
+});
+
+//подсветка клавиш при нажатии на ПКМ
 document.addEventListener('mousedown', (event) => {
     if (!input.disabled) {
         if (event.target.classList.contains('letter')) {
@@ -113,6 +109,7 @@ document.addEventListener('mousedown', (event) => {
     }
 });
 
+//отключение подсветки при mouseup
 document.addEventListener('mouseup', (event) => {
     event.target.style.backgroundColor = '';
 });
