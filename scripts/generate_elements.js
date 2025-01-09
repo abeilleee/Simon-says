@@ -46,6 +46,7 @@ export const keyboardWrapper = createElement({ tag: 'div', parent: wrapper, clas
 
 export const input = createElement({ tag: 'input', text: '', parent: wrapper, classes: ['input', 'btn--hide'] });
 input.setAttribute('readonly', '');
+input.setAttribute('disabled', '');
 export const buttonsBox = createElement({ tag: 'div', parent: wrapper, classes: ['btn--hide', 'btn__box'] });
 export const newGame = createElement({ tag: 'button', text: 'New game', parent: buttonsBox, classes: ['btn'] });
 export const repeatSequence = createElement({ tag: 'button', text: 'Repeat sequence', parent: buttonsBox, classes: ['btn'] });

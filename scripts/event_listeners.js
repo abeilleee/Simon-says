@@ -13,7 +13,6 @@ keyboard = createKeyboardEasy();
 let keyboardElements = digits;
 let randomElements;
 let round = 1;
-let time;
 
 
 levelsBox.addEventListener('click', (event) => {
@@ -40,7 +39,7 @@ buttonStart.addEventListener('click', () => {
 
     randomElements = getRandomElements(keyboardElements, round);
     console.log(randomElements);
-    highlightTheSequence(randomElements, time, newGame, repeatSequence);
+    highlightTheSequence({ arr: randomElements, buttons: [newGame, repeatSequence], btn: input });
     console.log('time: ' + time)
 });
 
@@ -53,13 +52,14 @@ newGame.addEventListener('click', (event) => {
     input.classList.add('btn--hide');
     round = 1;
     indicatorOfLevel.textContent = `${round}/5 round`;
-    console.log(round)
+    console.log(round);
+    input.value = '';
 });
 
 repeatSequence.addEventListener('click', (event) => {
     repeatSequence.setAttribute('disabled', '');
     repeatSequence.classList.add('btn--disabled');
-    highlightTheSequence(randomElements, time, newGame);
+    highlightTheSequence({ arr: randomElements, buttons: [newGame], btn: input });
 });
 
 console.log(round)
@@ -82,18 +82,20 @@ let pressedKeys = [];
 
 document.addEventListener('keydown', (event) => {
     console.log(event.key)
-    const isAlphanumeric = /^[a-zA-Z0-9\u0400-\u04FF\u0500-\u052F]$/;       //проверка на буквы или цифры
-    if (isAlphanumeric.test(event.key)) {
-        if ((/[a-zA-Z]/).test(event.key)) {
-            pressedKeys.push(event.key.toUpperCase());
-            input.value += event.key.toUpperCase();
-        } else if (+event.key >= 0 && +event.key <= 9) {
-            pressedKeys.push(+(event.key));
-            input.value += event.key;
+    if (!input.disabled) {
+        const isAlphanumeric = /^[a-zA-Z0-9\u0400-\u04FF\u0500-\u052F]$/;       //проверка на буквы или цифры
+        if (isAlphanumeric.test(event.key)) {
+            if ((/[a-zA-Z]/).test(event.key)) {
+                pressedKeys.push(event.key.toUpperCase());
+                input.value += event.key.toUpperCase();
+            } else if (+event.key >= 0 && +event.key <= 9) {
+                pressedKeys.push(+(event.key));
+                input.value += event.key;
+            }
         }
-
+        console.log(pressedKeys);
     }
-    console.log(pressedKeys)
+
 }
 );
 

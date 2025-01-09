@@ -32,15 +32,19 @@ export let getRandomElements = (arr, round) => {
 }
 
 //'подсветить' поочереди случайные эл-ты с клавиатуры (arr = массив со случайными элементами с клавиатуры)
-export let highlightTheSequence = (arr, time, btn1, btn2) => {
-    time = 1000;
-    btn1.setAttribute('disabled', '');
-    btn1.classList.add('btn--disabled');
-    if (btn2) {
-        btn2.setAttribute('disabled', '');
-        btn2.classList.add('btn--disabled');
+export let highlightTheSequence = (options) => {
+    const { arr, buttons = [], btn } = options;
+    let time = 1000;
+
+    if (buttons.length > 0) {
+        buttons.forEach((btn) => {
+            btn.setAttribute('disabled', '');
+            btn.classList.add('btn--disabled');
+        })
     }
-    //делаю неактивной кнопку new game
+    if (btn) {
+        btn.setAttribute('disabled', '');
+    }
     for (let i = 0; i < arr.length; i++) {
         let element = document.getElementById(`${arr[i]}`);
         setTimeout(() => {
@@ -51,16 +55,55 @@ export let highlightTheSequence = (arr, time, btn1, btn2) => {
         }, time);
         time += 1000;
     }
-    setTimeout(() => {                                               //возвращаю активность кнопке new game после отработки функции
-        btn1.removeAttribute('disabled', '');
-        btn1.classList.remove('btn--disabled');
-        if (btn2) {
-            btn2.removeAttribute('disabled', '');
-            btn2.classList.remove('btn--disabled');
+    setTimeout(() => {
+        if (buttons.length > 0) {                      //возвращаю активность кнопкам (new game, repeat) после отработки функции
+            buttons.forEach((btn) => {
+                btn.removeAttribute('disabled', '');
+                btn.classList.remove('btn--disabled');
+            })
         }
-
+        if (btn) {
+            btn.removeAttribute('disabled', '');
+        }
     }, time);
 }
+
+
+// export let highlightTheSequence = (arr, btn1, btn2, btn3) => {
+//     let time = 1000;
+//     btn1.setAttribute('disabled', '');
+//     btn1.classList.add('btn--disabled');
+//     if (btn2) {
+//         btn2.setAttribute('disabled', '');
+//         btn2.classList.add('btn--disabled');
+//     }
+//     if (btn3) {
+//         btn3.setAttribute('disabled', '');
+//     }
+//     for (let i = 0; i < arr.length; i++) {
+//         let element = document.getElementById(`${arr[i]}`);
+//         setTimeout(() => {
+//             element.style.backgroundColor = 'violet';
+//             setTimeout(function () {
+//                 element.style.backgroundColor = '';
+//             }, 1000);
+//         }, time);
+//         time += 1000;
+//     }
+//     setTimeout(() => {                                               //возвращаю активность кнопке new game после отработки функции
+//         btn1.removeAttribute('disabled', '');
+//         btn1.classList.remove('btn--disabled');
+//         if (btn2) {
+//             btn2.removeAttribute('disabled', '');
+//             btn2.classList.remove('btn--disabled');
+//         }
+//         if (btn3) {
+//             btn3.removeAttribute('disabled', '');
+//         }
+
+//     }, time);
+// }
+
 
 
 
