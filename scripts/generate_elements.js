@@ -17,7 +17,7 @@ const containerMain = createElement({ tag: 'div', parent: main, classes: ['conta
 export const wrapper = createElement({ tag: 'div', parent: containerMain, classes: ['wrapper'] });
 export const wrapperBox = createElement({ tag: 'button', parent: wrapper, classes: ['wrapper__box'] });
 export const buttonStart = createElement({ tag: 'button', text: 'Start', parent: wrapperBox, classes: ['btn', 'btn--primary'] });
-export const feedbackWrong = createElement({ tag: 'div', text: 'Wrong!', parent: wrapperBox, classes: ['feedback', 'hidden'] });
+export const feedbackWrong = createElement({ tag: 'div', text: 'Incorrect answer!', parent: wrapperBox, classes: ['feedback', 'hidden'] });
 export const levelsBox = createElement({ tag: 'div', parent: wrapper, classes: ['level__box'] });
 
 export const levelEasy = createRadioButton({

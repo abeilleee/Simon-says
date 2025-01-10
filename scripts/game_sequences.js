@@ -1,5 +1,7 @@
 import { randomIndex } from "./functions.js";
 
+
+
 let digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 let letters = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P",
     "A", "S", "D", "F", "G", "H", "J", "K", "L",
@@ -27,12 +29,13 @@ export let getRandomElements = (arr, round) => {
         randomNumber = randomIndex(arr);            //случайное число(случайный индекс элемента с клавиатуры)
         randomElements.push(arr[randomNumber]);     //создаю массив с этими элементами
     }
-    console.log('randomElements: '+ randomElements);
+    console.log('randomElements: ' + randomElements);
     return randomElements;
 }
 
 //'подсветить' поочереди случайные эл-ты с клавиатуры (arr = массив со случайными элементами с клавиатуры)
 export let highlightTheSequence = (options) => {
+
     const { arr, buttons = [], btn } = options;
     let time = 1000;
 
@@ -48,9 +51,9 @@ export let highlightTheSequence = (options) => {
     for (let i = 0; i < arr.length; i++) {
         let element = document.getElementById(`${arr[i]}`);
         setTimeout(() => {
-            element.style.backgroundColor = 'violet';
+            element.style.background = 'violet';
             setTimeout(function () {
-                element.style.backgroundColor = '';
+                element.style.background = '';
             }, 1000);
         }, time);
         time += 1000;

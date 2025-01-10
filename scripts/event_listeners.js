@@ -7,7 +7,7 @@ import { createKeyboardEasy, createKeyboardMedium, createKeyboardHard } from "./
 import { highlightTheSequence } from "./game_sequences.js";
 import { getRandomElements } from "./game_sequences.js";
 import { letters, digits, lettersAndDigits } from "./keyboard.js";
-import { checkTheInputSequence } from "./functions.js";
+// import { checkTheInputSequence } from "./functions.js";
 
 let keyboardElements = digits;
 let randomElements;
@@ -18,6 +18,9 @@ let pressedKeys = [];
 
 let eventHandled = false;   //флаг для проверки обработки только одного события
 let keyPressed = false;     //флаг для обработки только первого обнаруженного нажатия
+
+let stopInput = false;      //флаг для прекращения подсветки клавиш при вводе при неправильном ответе
+let currentIndex = 0;   //для проверки введенной буквы/цифры
 
 keyboard = createKeyboardEasy();
 
@@ -63,15 +66,20 @@ newGame.addEventListener('click', () => {
     indicatorOfRound.textContent = `${round}/5 round`;
     input.value = '';
     pressedKeys = [];
-    count = 0;
-
+    currentIndex = 0;
+    feedbackWrong.classList.add('hidden');
+    stopInput = false;
 });
+
+console.log(stopInput)
 
 //логика при нажатии кнопки повторение последовательности
 repeatSequence.addEventListener('click', () => {
     repeatSequence.setAttribute('disabled', '');
     repeatSequence.classList.add('btn--disabled');
     highlightTheSequence({ arr: randomElements, buttons: [newGame], btn: input });
+    feedbackWrong.classList.add('hidden');
+    stopInput = false;
 });
 
 nextBtn.addEventListener('click', () => {
@@ -86,24 +94,33 @@ nextBtn.addEventListener('click', () => {
         nextBtn.classList.add('btn--disabled');
     }
 });
-let count = 0;
+
+
+
 // обработчик события клавиатуры
 let handleKeyPress = (event) => {
-    console.log('count = ' + count);
-    if (!eventHandled) {                                                       //обработка для первого обнаруженного события (мышь или клавиатура)
-        eventHandled = true;
-        if (!keyPressed) {                                                     //обработка для первого обнаруженного нажатия клавиши
-            keyPressed = true;
+    if (!input.disabled && !stopInput === true) {                                  //пока работает функция highlightTheSequence
+        if (!eventHandled) {                                                       //обработка для первого обнаруженного события (мышь или клавиатура)
+            eventHandled = true;
+            if (!keyPressed) {                                                     //обработка для первого обнаруженного нажатия клавиши
+                keyPressed = true;
 
-            const isAlphanumeric = /^[a-zA-Z0-9\u0400-\u04FF\u0500-\u052F]$/;  //проверка на буквы и цифры
-            if (isAlphanumeric.test(event.key)) {
+                const isAlphanumeric = /^[a-zA-Z0-9\u0400-\u04FF\u0500-\u052F]$/;  //проверка на буквы и цифры
+                if (isAlphanumeric.test(event.key)) {
 
-                if (!input.disabled) {                                         //пока работает функция highlightTheSequence
+
                     if (level === 'easy') {                                    //в зависимости от уровня игнорируются другие клавиши
                         if (+event.key >= 0 && +event.key <= 9) {
                             pressedKeys.push(+(event.key));
                             input.value += event.key;
                             document.getElementById(`${event.key}`).style.backgroundColor = 'red';    //подсветка клавиш при нажатии
+                            if (+event.key === randomElements[currentIndex]) {
+                                currentIndex++;
+                            }
+                            else {
+                                feedbackWrong.classList.remove('hidden');
+                                stopInput = true;
+                            }
                         }
                     }
                     if (level === 'medium') {
@@ -111,6 +128,11 @@ let handleKeyPress = (event) => {
                             pressedKeys.push(event.key.toUpperCase());
                             input.value += event.key.toUpperCase();
                             document.getElementById(`${event.key.toUpperCase()}`).style.backgroundColor = 'red';
+                            if (event.key.toUpperCase() === randomElements[currentIndex]) {
+                                currentIndex++;
+                                feedbackWrong.classList.remove('hidden');
+                                stopInput = true;
+                            }
                         }
                     }
                     if (level === 'hard') {
@@ -118,21 +140,30 @@ let handleKeyPress = (event) => {
                             pressedKeys.push(event.key.toUpperCase());
                             input.value += event.key.toUpperCase();
                             document.getElementById(`${event.key.toUpperCase()}`).style.backgroundColor = 'red';
+                            if (event.key.toUpperCase() === randomElements[currentIndex]) {
+                                currentIndex++;
+                                feedbackWrong.classList.remove('hidden');
+                                stopInput = true;
+                            }
                         } else if (+event.key >= 0 && +event.key <= 9) {
                             pressedKeys.push(+(event.key));
                             input.value += event.key;
                             document.getElementById(`${event.key}`).style.backgroundColor = 'red';
+                            if (+event.key === randomElements[currentIndex]) {
+                                currentIndex++;
+                                feedbackWrong.classList.remove('hidden');
+                                stopInput = true;
+                            }
                         }
                     }
+                    console.log('pressed keys: ' + pressedKeys);
+                    console.log('stop input: ' + stopInput);
                 }
             }
         }
-    }
-    console.log('pressed keys: ' + pressedKeys)
-    checkTheInputSequence(pressedKeys, randomElements, count, feedbackWrong);
-    count++;
-    
+    } console.log('index: ' + currentIndex)
 }
+
 
 // обработчик события мыши
 let handleMouseClick = (event) => {

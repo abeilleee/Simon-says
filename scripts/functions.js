@@ -11,15 +11,6 @@ export let randomIndex = (arr) => {
     return number;
 }
 
-//проверка введенной последовательности
-export let checkTheInputSequence = (arr, randomElements, count, message) => {
-    for (let i = 0; i < randomElements.length; i++) {
-        if (arr[count] != randomElements[count]) {
-            message.classList.remove('hidden');
-            break;
-        }
-    }
-}
 
 
 
