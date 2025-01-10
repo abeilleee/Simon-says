@@ -45,12 +45,12 @@ export let highlightTheSequence = (options) => {
         let element = document.getElementById(`${arr[i]}`);
         setTimeout(() => {
             // element.style.background = 'violet';
-    //         element.style.boxShadow = `inset -8px 0 8px rgba(0, 0, 0, 0.15),
-    //     inset 0 -8px 8px rgba(0, 0, 0, 0.25),
-    //    0 0 7px 2px rgba(26, 87, 242, 0.751),
-    //    10px 20px 25px rgba(14, 119, 231, 0.732);`
+            element.style.background = `rgba(232, 230, 252, 0.52)`;
+            element.style.boxShadow = `0 0 17px 2px #402ffc,
+                    0px 0px 25px rgba(14, 119, 231, 0.732)`;
             setTimeout(function () {
                 element.style.background = '';
+                element.style.boxShadow = '';
             }, 350);
         }, time);
         time += 700;
