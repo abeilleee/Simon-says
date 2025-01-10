@@ -80,6 +80,8 @@ repeatSequence.addEventListener('click', () => {
     highlightTheSequence({ arr: randomElements, buttons: [newGame], btn: input });
     feedbackWrong.classList.add('hidden');
     stopInput = false;
+    input.value = '';
+    currentIndex = 0;
 });
 
 nextBtn.addEventListener('click', () => {
@@ -107,8 +109,6 @@ let handleKeyPress = (event) => {
 
                 const isAlphanumeric = /^[a-zA-Z0-9\u0400-\u04FF\u0500-\u052F]$/;  //проверка на буквы и цифры
                 if (isAlphanumeric.test(event.key)) {
-
-
                     if (level === 'easy') {                                    //в зависимости от уровня игнорируются другие клавиши
                         if (+event.key >= 0 && +event.key <= 9) {
                             pressedKeys.push(+(event.key));
@@ -130,6 +130,7 @@ let handleKeyPress = (event) => {
                             document.getElementById(`${event.key.toUpperCase()}`).style.backgroundColor = 'red';
                             if (event.key.toUpperCase() === randomElements[currentIndex]) {
                                 currentIndex++;
+                            } else {
                                 feedbackWrong.classList.remove('hidden');
                                 stopInput = true;
                             }
@@ -142,6 +143,7 @@ let handleKeyPress = (event) => {
                             document.getElementById(`${event.key.toUpperCase()}`).style.backgroundColor = 'red';
                             if (event.key.toUpperCase() === randomElements[currentIndex]) {
                                 currentIndex++;
+                            } else {
                                 feedbackWrong.classList.remove('hidden');
                                 stopInput = true;
                             }
@@ -151,6 +153,7 @@ let handleKeyPress = (event) => {
                             document.getElementById(`${event.key}`).style.backgroundColor = 'red';
                             if (+event.key === randomElements[currentIndex]) {
                                 currentIndex++;
+                            } else {
                                 feedbackWrong.classList.remove('hidden');
                                 stopInput = true;
                             }
@@ -167,24 +170,36 @@ let handleKeyPress = (event) => {
 
 // обработчик события мыши
 let handleMouseClick = (event) => {
-    if (!eventHandled) {
-        eventHandled = true;                                //флаг, что событие уже обработано
-        if (!input.disabled) {
+    if (!input.disabled && !stopInput === true) {
+        if (!eventHandled) {
+            eventHandled = true;                                //флаг, что событие уже обработано
+
             if (event.target.classList.contains('letter')) {
                 event.target.style.backgroundColor = 'blue';
-                input.value += event.target.id;
+
                 if ((/[a-zA-Z]/).test(event.target.id)) {
                     pressedKeys.push(event.target.id.toUpperCase());
-                } else if (event.target.id >= 0 && event.target.id <= 9) {
+                    input.value += event.target.id;
+                    if (event.target.id.toUpperCase() === randomElements[currentIndex]) {
+                        currentIndex++;
+                    } else {
+                        feedbackWrong.classList.remove('hidden');
+                        stopInput = true;
+                    }
+                } else if (+event.target.id >= 0 && +event.target.id <= 9) {
                     pressedKeys.push(+event.target.id);
-                }
+                    input.value += +event.target.id;
+                    if (+event.target.id === randomElements[currentIndex]) {
+                        currentIndex++;
+                    } else {
+                        feedbackWrong.classList.remove('hidden');
+                        stopInput = true;
+                    }
+                }console.log('pressed keys: ' + pressedKeys);
+                console.log('stop input: ' + stopInput);
             }
         }
-    }
-    // console.log('pressed keys: ' + pressedKeys)
-    // checkTheInputSequence(pressedKeys, randomElements, count, feedbackWrong);
-    // count++;
-    // console.log('count= ' + count);
+    }console.log('current index mouse: ' + currentIndex)
 }
 
 // функция для сброса флага при отпускании клавиши или кнопки мыши
