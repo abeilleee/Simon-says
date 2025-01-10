@@ -35,7 +35,7 @@ export const levelsBox = createElement({ tag: 'div', parent: wrapper, classes: [
 export const levelEasy = createRadioButton({
     text: 'easy',
     parent: levelsBox,
-    classes: ['level'],
+    classes: ['input__radio'],
     checked: 'true',
     id: 'easy',
     value: 'easy'
@@ -43,14 +43,14 @@ export const levelEasy = createRadioButton({
 export const levelMedium = createRadioButton({
     text: 'medium',
     parent: levelsBox,
-    classes: ['level'],
+    classes: ['input__radio'],
     id: 'medium',
     value: 'medium'
 });
 export const levelHard = createRadioButton({
     text: 'hard',
     parent: levelsBox,
-    classes: ['level'],
+    classes: ['input__radio'],
     id: 'hard',
     value: 'hard'
 });

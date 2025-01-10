@@ -4,3 +4,11 @@
     gap: 10px;
     justify-content: space-between;
 }
+
+.input__radio {
+    appearance: none;
+}
+
+.level--checked {
+    color: $primary-color-blue;
+}

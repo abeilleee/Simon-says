@@ -20,22 +20,35 @@ let keyPressed = false;     //флаг для обработки только п
 let stopInput = false;      //флаг для прекращения подсветки клавиш при вводе при неправильном ответе
 let currentIndex = 0;       //для проверки введенной буквы/цифры co сгенерированной последовательностью (randomElements)
 
+let labelEasy = document.querySelector('label[for="easy"]');
+let labelMedium = document.querySelector('label[for="medium"]');
+let labelHard = document.querySelector('label[for="hard"]');
 createKeyboardEasy();
+labelEasy.classList.add('level--checked');
 
 //прорисовка клавиатуры в зависимости от выбранного уровня
 levelsBox.addEventListener('click', (event) => {
-    if (event.target === (levelEasy)) {
+    if (event.target === levelEasy) {
         createKeyboardEasy();
         keyboardElements = digits;
         level = 'easy';
+        labelEasy.classList.add('level--checked');
+        labelMedium.classList.remove('level--checked');
+        labelHard.classList.remove('level--checked');
     } else if (event.target === levelMedium) {
         createKeyboardMedium();
         keyboardElements = letters;
         level = 'medium';
+        labelMedium.classList.add('level--checked');
+        labelEasy.classList.remove('level--checked');
+        labelHard.classList.remove('level--checked');
     } else if (event.target === levelHard) {
         createKeyboardHard();
         keyboardElements = lettersAndDigits;
         level = 'hard';
+        labelHard.classList.add('level--checked');
+        labelEasy.classList.remove('level--checked');
+        labelMedium.classList.remove('level--checked');
     }
 });
 
@@ -96,7 +109,7 @@ btnNext.addEventListener('click', () => {
         round += 1;
         indicatorOfRound.textContent = `${round}/5 round`;                  //смена индикатора раундов
         randomElements = getRandomElements(keyboardElements, round);
-        highlightTheSequence({ arr: randomElements, buttons: [newGame], btn: input });
+        highlightTheSequence({ arr: randomElements, buttons: [newGame, repeatSequence], btn: input });
     }
     console.log('randomElements: ' + randomElements);
 });
