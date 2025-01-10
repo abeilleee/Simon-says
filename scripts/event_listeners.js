@@ -64,9 +64,9 @@ buttonStart.addEventListener('click', () => {
     labelMedium.classList.add('level--disabled');
     setAttribute(levelHard);
     labelHard.classList.add('level--disabled');
-
     randomElements = getRandomElements(keyboardElements, round);
     highlightTheSequence({ arr: randomElements, buttons: [newGame, repeatSequence], btn: input });
+    stopInput = false;
 });
 
 newGame.addEventListener('click', () => {
@@ -88,7 +88,7 @@ newGame.addEventListener('click', () => {
     currentIndex = 0;
     feedbackWrong.classList.add('feedback--hide');
     feedbackRight.classList.add('feedback--hide');
-    stopInput = false;
+    stopInput = true;
 });
 
 //логика при нажатии кнопки повторение последовательности
