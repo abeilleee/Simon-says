@@ -257,9 +257,6 @@ body {
   background-color: rgba(130, 127, 127, 0.649);
   box-shadow: 20px 20px 20px 0px #0f0f0f;
 }
-.letter:hover {
-  cursor: pointer;
-}
 @media screen and (max-width: 768px) {
   .letter {
     width: 40px;
