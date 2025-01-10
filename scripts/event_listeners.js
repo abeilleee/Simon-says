@@ -141,7 +141,8 @@ let handleKeyPress = (event) => {
                             pressedKeys.push(+(event.key));
                             input.value += event.key;
                             //подсветка клавиш при нажатии
-                            document.getElementById(`${event.key}`).style.backgroundColor = 'red';
+                            document.getElementById(`${event.key}`).style.boxShadow = `0 0 17px 2px #402ffc,
+                            0px 0px 25px rgba(14, 119, 231, 0.732)`;
                             if (+event.key === randomElements[currentIndex]) {
                                 currentIndex++;
                             }
@@ -155,7 +156,8 @@ let handleKeyPress = (event) => {
                         if ((/[a-zA-Z]/).test(event.key)) {
                             pressedKeys.push(event.key.toUpperCase());
                             input.value += event.key.toUpperCase();
-                            document.getElementById(`${event.key.toUpperCase()}`).style.backgroundColor = 'red';
+                            document.getElementById(`${event.key.toUpperCase()}`).style.boxShadow = `0 0 17px 2px #402ffc,
+                            0px 0px 25px rgba(14, 119, 231, 0.732)`;
                             if (event.key.toUpperCase() === randomElements[currentIndex]) {
                                 currentIndex++;
                             } else {
@@ -168,7 +170,8 @@ let handleKeyPress = (event) => {
                         if ((/[a-zA-Z]/).test(event.key)) {
                             pressedKeys.push(event.key.toUpperCase());
                             input.value += event.key.toUpperCase();
-                            document.getElementById(`${event.key.toUpperCase()}`).style.backgroundColor = 'red';
+                            document.getElementById(`${event.key.toUpperCase()}`).style.boxShadow = `0 0 17px 2px #402ffc,
+                            0px 0px 25px rgba(14, 119, 231, 0.732)`;
                             if (event.key.toUpperCase() === randomElements[currentIndex]) {
                                 currentIndex++;
                             } else {
@@ -178,7 +181,8 @@ let handleKeyPress = (event) => {
                         } else if (+event.key >= 0 && +event.key <= 9) {
                             pressedKeys.push(+(event.key));
                             input.value += event.key;
-                            document.getElementById(`${event.key}`).style.backgroundColor = 'red';
+                            document.getElementById(`${event.key}`).style.boxShadow = `0 0 17px 2px #402ffc,
+                            0px 0px 25px rgba(14, 119, 231, 0.732)`;
                             if (+event.key === randomElements[currentIndex]) {
                                 currentIndex++;
                             } else {
@@ -215,7 +219,8 @@ let handleMouseClick = (event) => {
             eventHandled = true;
 
             if (event.target.classList.contains('letter')) {
-                event.target.style.backgroundColor = 'blue';
+                event.target.style.boxShadow = `0 0 17px 2px #402ffc,
+                0px 0px 25px rgba(14, 119, 231, 0.732)`;
                 if ((/[a-zA-Z]/).test(event.target.id)) {
                     pressedKeys.push(event.target.id.toUpperCase());
                     input.value += event.target.id;
@@ -270,19 +275,19 @@ document.addEventListener('keyup', (event) => {
         if (!input.disabled) {
             if (level === 'easy') {
                 if (+event.key >= 0 && +event.key <= 9) {
-                    document.getElementById(`${event.key}`).style.backgroundColor = '';
+                    document.getElementById(`${event.key}`).style.boxShadow = '';
                 }
             }
             if (level === 'medium') {
                 if ((/[a-zA-Z]/).test(event.key)) {
-                    document.getElementById(`${event.key.toUpperCase()}`).style.backgroundColor = '';
+                    document.getElementById(`${event.key.toUpperCase()}`).style.boxShadow = '';
                 }
             }
             if (level === 'hard') {
                 if ((/[a-zA-Z]/).test(event.key)) {
-                    document.getElementById(`${event.key.toUpperCase()}`).style.backgroundColor = '';
+                    document.getElementById(`${event.key.toUpperCase()}`).style.boxShadow = '';
                 } else if (+event.key >= 0 && +event.key <= 9) {
-                    document.getElementById(`${event.key}`).style.backgroundColor = '';
+                    document.getElementById(`${event.key}`).style.boxShadow = '';
                 }
             }
         }
@@ -291,7 +296,7 @@ document.addEventListener('keyup', (event) => {
 
 //отключение подсветки клавиш при mouseup
 document.addEventListener('mouseup', (event) => {
-    event.target.style.backgroundColor = '';
+    event.target.style.boxShadow = '';
 });
 
 
