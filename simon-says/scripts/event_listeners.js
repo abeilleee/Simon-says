@@ -2,7 +2,7 @@ import {
     levelsBox, buttonStart, buttonsBox, indicatorOfRound,
     levelEasy, levelMedium, levelHard, repeatSequence, newGame, btnNext, input, feedbackWrong, feedbackRight, feedbackWin
 } from "./generate_elements.js";
-import { setAttribute, removeAttribute } from "./functions.js";
+import { setAttribute, removeAttribute, removeHover } from "./functions.js";
 import { createKeyboardEasy, createKeyboardMedium, createKeyboardHard } from "./keyboard.js";
 import { highlightTheSequence } from "./game_sequences.js";
 import { getRandomElements } from "./game_sequences.js";
@@ -13,7 +13,7 @@ let randomElements;
 let round = 1;
 let level = 'easy';
 let pressedKeys = [];
-
+ 
 let eventHandled = false;   //флаг для проверки (обработки) только одного события
 let keyPressed = false;     //флаг для обработки только первого обнаруженного нажатия
 
@@ -25,6 +25,7 @@ let labelMedium = document.querySelector('label[for="medium"]');
 let labelHard = document.querySelector('label[for="hard"]');
 createKeyboardEasy();
 labelEasy.classList.add('level--checked');
+let keyboardLetters = document.querySelectorAll('.letter'); //клавиши клавиатуры
 
 
 //прорисовка клавиатуры в зависимости от выбранного уровня
@@ -65,7 +66,7 @@ buttonStart.addEventListener('click', () => {
     setAttribute(levelHard);
     labelHard.classList.add('level--disabled');
     randomElements = getRandomElements(keyboardElements, round);
-    highlightTheSequence({ arr: randomElements, buttons: [newGame, repeatSequence], btn: input });
+    highlightTheSequence({ arr: randomElements, buttons: [newGame, repeatSequence], btn: input, keyboardLetters });
     stopInput = false;
 });
 
@@ -95,7 +96,7 @@ newGame.addEventListener('click', () => {
 repeatSequence.addEventListener('click', () => {
     repeatSequence.setAttribute('disabled', '');
     repeatSequence.classList.add('btn--disabled');
-    highlightTheSequence({ arr: randomElements, buttons: [newGame], btn: input });
+    highlightTheSequence({ arr: randomElements, buttons: [newGame], btn: input, keyboardLetters });
     feedbackWrong.classList.add('feedback--hide');
     stopInput = false;
     input.value = '';
@@ -116,7 +117,7 @@ btnNext.addEventListener('click', () => {
         round += 1;
         indicatorOfRound.textContent = `${round}/5 round`;                  //смена индикатора раундов
         randomElements = getRandomElements(keyboardElements, round);
-        highlightTheSequence({ arr: randomElements, buttons: [newGame, repeatSequence], btn: input });
+        highlightTheSequence({ arr: randomElements, buttons: [newGame, repeatSequence], btn: input, keyboardLetters });
     }
     console.log('randomElements: ' + randomElements);
 });
@@ -149,6 +150,7 @@ let handleKeyPress = (event) => {
                             else {
                                 feedbackWrong.classList.remove('feedback--hide');
                                 stopInput = true;
+                                removeHover(keyboardLetters);
                             }
                         }
                     }
@@ -163,6 +165,7 @@ let handleKeyPress = (event) => {
                             } else {
                                 feedbackWrong.classList.remove('feedback--hide');
                                 stopInput = true;
+                                removeHover(keyboardLetters);
                             }
                         }
                     }
@@ -177,6 +180,7 @@ let handleKeyPress = (event) => {
                             } else {
                                 feedbackWrong.classList.remove('feedback--hide');
                                 stopInput = true;
+                                removeHover(keyboardLetters);
                             }
                         } else if (+event.key >= 0 && +event.key <= 9) {
                             pressedKeys.push(+(event.key));
@@ -188,6 +192,7 @@ let handleKeyPress = (event) => {
                             } else {
                                 feedbackWrong.classList.remove('feedback--hide');
                                 stopInput = true;
+                                removeHover(keyboardLetters);
                             }
                         }
                     }
@@ -199,6 +204,7 @@ let handleKeyPress = (event) => {
             feedbackRight.classList.remove('feedback--hide');
             repeatSequence.classList.add('btn--hide');
             btnNext.classList.remove('btn--hide');
+            removeHover(keyboardLetters);
             //при успешном завершении игры:
         } else if (currentIndex === randomElements.length && round === 5) {
             repeatSequence.setAttribute('disabled', '');
@@ -229,6 +235,7 @@ let handleMouseClick = (event) => {
                     } else {
                         feedbackWrong.classList.remove('feedback--hide');
                         stopInput = true;
+                        removeHover(keyboardLetters);
                     }
                 } else if (+event.target.id >= 0 && +event.target.id <= 9) {
                     pressedKeys.push(+event.target.id);
@@ -238,6 +245,7 @@ let handleMouseClick = (event) => {
                     } else {
                         feedbackWrong.classList.remove('feedback--hide');
                         stopInput = true;
+                        removeHover(keyboardLetters);
                     }
                 }
             }
@@ -247,6 +255,7 @@ let handleMouseClick = (event) => {
             feedbackRight.classList.remove('feedback--hide');
             repeatSequence.classList.add('btn--hide');
             btnNext.classList.remove('btn--hide');
+            removeHover(keyboardLetters);
         } else if (currentIndex === randomElements.length && round === 5) {
             repeatSequence.setAttribute('disabled', '');
             repeatSequence.classList.add('btn--disabled');

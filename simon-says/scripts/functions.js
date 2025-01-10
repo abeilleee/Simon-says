@@ -11,6 +11,9 @@ export let randomIndex = (arr) => {
     return number;
 }
 
+export let removeHover = (arr) => {
+    arr.forEach((elem) => elem.classList.remove('letter__hover'));
+}
 
 
 

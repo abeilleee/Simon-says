@@ -29,7 +29,7 @@ export let getRandomElements = (arr, round) => {
 //'подсветить' поочереди случайные эл-ты с клавиатуры (arr = массив со случайными элементами с клавиатуры)
 export let highlightTheSequence = (options) => {
 
-    const { arr, buttons = [], btn } = options;
+    const { arr, buttons = [], btn, keyboardLetters } = options;
     let time = 700;
 
     if (buttons.length > 0) {
@@ -40,6 +40,9 @@ export let highlightTheSequence = (options) => {
     }
     if (btn) {
         btn.setAttribute('disabled', '');
+    }
+    if (keyboardLetters) {
+        keyboardLetters.forEach((elem) => elem.classList.remove('letter__hover')); //установить hover для клавиш, когда возможен ввод последовательности 
     }
     for (let i = 0; i < arr.length; i++) {
         let element = document.getElementById(`${arr[i]}`);
@@ -64,6 +67,9 @@ export let highlightTheSequence = (options) => {
         }
         if (btn) {
             btn.removeAttribute('disabled', '');
+        }
+        if (keyboardLetters) {
+            keyboardLetters.forEach((elem) => elem.classList.add('letter__hover')); //установить hover для клавиш, когда возможен ввод последовательности 
         }
     }, time);
 }
