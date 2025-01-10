@@ -224,7 +224,10 @@ body {
 }
 
 .input {
-  border: 1px solid #2feaf8;
+  border: 1px solid #402ffc;
+  border-radius: 8px;
+  width: 350px;
+  padding: 4px;
 }
 
 .feedback {
@@ -232,13 +235,19 @@ body {
   justify-content: center;
 }
 .feedback--correct {
-  color: green;
+  color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(to right, #0bbeff, #3dee52, #2ed1ee);
 }
 .feedback--incorrect {
-  color: red;
+  color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(to right, #ff750b, #c30b0b, #ee2e2e);
 }
 .feedback--win {
-  color: blue;
+  color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(to right, #0b44ff, #3dee63, #2ed1ee);
 }
 .feedback--hide {
   display: none;

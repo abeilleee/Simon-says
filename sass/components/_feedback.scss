@@ -3,15 +3,21 @@
     justify-content: center;
 
     &--correct {
-        color: green;
+        color: transparent;
+        background-clip: text;
+        background-image: linear-gradient(to right, #0bbeff, #3dee52, #2ed1ee);
     }
 
     &--incorrect {
-        color: red;
+        color: transparent;
+        background-clip: text;
+        background-image: linear-gradient(to right, #ff750b, #c30b0b, #ee2e2e);
     }
 
     &--win {
-        color: blue;
+        color: transparent;
+        background-clip: text;
+        background-image: linear-gradient(to right, #0b44ff, #3dee63, #2ed1ee);
     }
 
     &--hide {
