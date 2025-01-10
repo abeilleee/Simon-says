@@ -44,7 +44,11 @@ export let highlightTheSequence = (options) => {
     for (let i = 0; i < arr.length; i++) {
         let element = document.getElementById(`${arr[i]}`);
         setTimeout(() => {
-            element.style.background = 'violet';
+            // element.style.background = 'violet';
+    //         element.style.boxShadow = `inset -8px 0 8px rgba(0, 0, 0, 0.15),
+    //     inset 0 -8px 8px rgba(0, 0, 0, 0.25),
+    //    0 0 7px 2px rgba(26, 87, 242, 0.751),
+    //    10px 20px 25px rgba(14, 119, 231, 0.732);`
             setTimeout(function () {
                 element.style.background = '';
             }, 350);

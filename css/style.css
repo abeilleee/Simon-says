@@ -217,7 +217,8 @@ body {
   height: 60px;
   padding: 20px;
   text-align: center;
-  background-color: rgb(134, 134, 134);
+  background-color: rgba(130, 127, 127, 0.649);
+  box-shadow: 20px 20px 20px 0px #0f0f0f;
 }
 .letter:hover {
   cursor: pointer;
