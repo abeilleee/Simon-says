@@ -95,6 +95,9 @@ legend {
   width: 100%;
   gap: 20px;
 }
+.wrapper__box {
+  height: 62px;
+}
 
 .header__box {
   display: flex;
@@ -203,8 +206,19 @@ body {
 
 .feedback {
   font-size: 30px;
-  color: red;
   justify-content: center;
+}
+.feedback--correct {
+  color: green;
+}
+.feedback--incorrect {
+  color: red;
+}
+.feedback--win {
+  color: blue;
+}
+.feedback--hide {
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */

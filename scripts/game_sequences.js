@@ -14,7 +14,7 @@ export let getRandomElements = (arr, round) => {
     let amountOfElements = 3; //удалить
 
     if (round === 1) {
-        amountOfElements = 3;
+        amountOfElements = 2;
     } else if (round === 2) {
         amountOfElements = 4;
     } else if (round === 3) {
@@ -37,7 +37,7 @@ export let getRandomElements = (arr, round) => {
 export let highlightTheSequence = (options) => {
 
     const { arr, buttons = [], btn } = options;
-    let time = 1000;
+    let time = 300;
 
     if (buttons.length > 0) {
         buttons.forEach((btn) => {
@@ -54,9 +54,9 @@ export let highlightTheSequence = (options) => {
             element.style.background = 'violet';
             setTimeout(function () {
                 element.style.background = '';
-            }, 1000);
+            }, 300);
         }, time);
-        time += 1000;
+        time += 300;
     }
     setTimeout(() => {
         if (buttons.length > 0) {                      //возвращаю активность кнопкам (new game, repeat) после отработки функции

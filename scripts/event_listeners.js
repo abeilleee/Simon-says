@@ -1,8 +1,8 @@
 import {
     levelsBox, buttonStart, buttonsBox, indicatorOfRound,
-    levelEasy, levelMedium, levelHard, repeatSequence, newGame, nextBtn, input, feedbackWrong
+    levelEasy, levelMedium, levelHard, repeatSequence, newGame, btnNext, input, feedbackWrong, feedbackRight, feedbackWin
 } from "./generate_elements.js";
-import { setAttribute, removeAttribute } from "./functions.js";
+import { setAttribute, removeAttribute, endGame } from "./functions.js";
 import { createKeyboardEasy, createKeyboardMedium, createKeyboardHard } from "./keyboard.js";
 import { highlightTheSequence } from "./game_sequences.js";
 import { getRandomElements } from "./game_sequences.js";
@@ -43,7 +43,7 @@ levelsBox.addEventListener('click', (event) => {
 
 buttonStart.addEventListener('click', () => {
     buttonsBox.classList.remove('btn--hide');
-    buttonStart.classList.add('hidden');
+    buttonStart.classList.add('btn--hide');
     indicatorOfRound.classList.remove('btn--hide');
     input.classList.remove('btn--hide');
     setAttribute(levelEasy);
@@ -55,8 +55,9 @@ buttonStart.addEventListener('click', () => {
 });
 
 newGame.addEventListener('click', () => {
-    buttonStart.classList.remove('hidden');
-    feedbackWrong.classList.add('hidden');
+    buttonStart.classList.remove('btn--hide');
+    feedbackWrong.classList.add('feedback--hide');
+    feedbackWin.classList.add('feedback--hide');
     removeAttribute(levelEasy);
     removeAttribute(levelMedium);
     removeAttribute(levelHard);
@@ -67,7 +68,8 @@ newGame.addEventListener('click', () => {
     input.value = '';
     pressedKeys = [];
     currentIndex = 0;
-    feedbackWrong.classList.add('hidden');
+    feedbackWrong.classList.add('feedback--hide');
+    feedbackRight.classList.add('feedback--hide');
     stopInput = false;
 });
 
@@ -78,22 +80,28 @@ repeatSequence.addEventListener('click', () => {
     repeatSequence.setAttribute('disabled', '');
     repeatSequence.classList.add('btn--disabled');
     highlightTheSequence({ arr: randomElements, buttons: [newGame], btn: input });
-    feedbackWrong.classList.add('hidden');
+    feedbackWrong.classList.add('feedback--hide');
     stopInput = false;
     input.value = '';
     currentIndex = 0;
 });
 
-nextBtn.addEventListener('click', () => {
+btnNext.addEventListener('click', () => {
+    repeatSequence.removeAttribute('disabled', '');
     repeatSequence.classList.remove('btn--disabled');
+    repeatSequence.classList.remove('btn--hide');
+    btnNext.classList.add('btn--hide');
+    input.value = '';
+    currentIndex = 0;
+    pressedKeys = [];
+    feedbackRight.classList.add('feedback--hide');
+    stopInput = false;
     if (round < 5) {
         round += 1;
         indicatorOfRound.textContent = `${round}/5 round`;                  //смена индикатора раундов
         randomElements = getRandomElements(keyboardElements, round);
-        highlightTheSequence(randomElements, newGame);
-    }
-    if (round === 5) {
-        nextBtn.classList.add('btn--disabled');
+        highlightTheSequence({ arr: randomElements, buttons: [newGame], btn: input });
+        console.log('randomElements: ' + randomElements);
     }
 });
 
@@ -118,7 +126,7 @@ let handleKeyPress = (event) => {
                                 currentIndex++;
                             }
                             else {
-                                feedbackWrong.classList.remove('hidden');
+                                feedbackWrong.classList.remove('feedback--hide');
                                 stopInput = true;
                             }
                         }
@@ -131,7 +139,7 @@ let handleKeyPress = (event) => {
                             if (event.key.toUpperCase() === randomElements[currentIndex]) {
                                 currentIndex++;
                             } else {
-                                feedbackWrong.classList.remove('hidden');
+                                feedbackWrong.classList.remove('feedback--hide');
                                 stopInput = true;
                             }
                         }
@@ -144,7 +152,7 @@ let handleKeyPress = (event) => {
                             if (event.key.toUpperCase() === randomElements[currentIndex]) {
                                 currentIndex++;
                             } else {
-                                feedbackWrong.classList.remove('hidden');
+                                feedbackWrong.classList.remove('feedback--hide');
                                 stopInput = true;
                             }
                         } else if (+event.key >= 0 && +event.key <= 9) {
@@ -154,17 +162,28 @@ let handleKeyPress = (event) => {
                             if (+event.key === randomElements[currentIndex]) {
                                 currentIndex++;
                             } else {
-                                feedbackWrong.classList.remove('hidden');
+                                feedbackWrong.classList.remove('feedback--hide');
                                 stopInput = true;
                             }
                         }
                     }
                     console.log('pressed keys: ' + pressedKeys);
-                    console.log('stop input: ' + stopInput);
                 }
-            }
+            } console.log('current round outer: ' + round);
         }
-    } console.log('index: ' + currentIndex)
+        if (currentIndex === randomElements.length && round < 5) {
+            stopInput = true;
+            feedbackRight.classList.remove('feedback--hide');
+            repeatSequence.classList.add('btn--hide');
+            btnNext.classList.remove('btn--hide');
+        } else if (currentIndex === randomElements.length && round === 5) {
+            repeatSequence.setAttribute('disabled', '');
+            repeatSequence.classList.add('btn--disabled');
+            feedbackWin.classList.remove('feedback--hide');
+            stopInput = true;
+        }
+
+    }
 }
 
 
@@ -183,7 +202,7 @@ let handleMouseClick = (event) => {
                     if (event.target.id.toUpperCase() === randomElements[currentIndex]) {
                         currentIndex++;
                     } else {
-                        feedbackWrong.classList.remove('hidden');
+                        feedbackWrong.classList.remove('feedback--hide');
                         stopInput = true;
                     }
                 } else if (+event.target.id >= 0 && +event.target.id <= 9) {
@@ -192,14 +211,25 @@ let handleMouseClick = (event) => {
                     if (+event.target.id === randomElements[currentIndex]) {
                         currentIndex++;
                     } else {
-                        feedbackWrong.classList.remove('hidden');
+                        feedbackWrong.classList.remove('feedback--hide');
                         stopInput = true;
                     }
-                }console.log('pressed keys: ' + pressedKeys);
+                } console.log('pressed keys: ' + pressedKeys);
                 console.log('stop input: ' + stopInput);
             }
         }
-    }console.log('current index mouse: ' + currentIndex)
+        if (currentIndex === randomElements.length && round < 5) {
+            stopInput = true;
+            feedbackRight.classList.remove('feedback--hide');
+            repeatSequence.classList.add('btn--hide');
+            btnNext.classList.remove('btn--hide');
+        } else if (currentIndex === randomElements.length && round === 5) {
+            repeatSequence.setAttribute('disabled', '');
+            repeatSequence.classList.add('btn--disabled');
+            feedbackWin.classList.remove('feedback--hide');
+            stopInput = true;
+        }
+    } console.log('current index mouse: ' + currentIndex)
 }
 
 // функция для сброса флага при отпускании клавиши или кнопки мыши
