@@ -25,7 +25,7 @@ export const feedbackRight = createElement({
 });
 
 export const feedbackWin = createElement({
-    tag: 'div', text: 'You win!',
+    tag: 'div', text: 'The game is over! You win!',
     parent: wrapperBox,
     classes: ['feedback', 'feedback--win', 'feedback--hide']
 });
