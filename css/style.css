@@ -184,7 +184,7 @@ body {
 }
 
 .level--disabled {
-  cursor: none;
+  cursor: default;
   opacity: 60%;
 }
 
