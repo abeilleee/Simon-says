@@ -12,14 +12,6 @@ export let randomIndex = (arr) => {
 }
 
 
-export let endGame = (round) => {
-    if (round === 5) {
-        console.log('WIN!');
-    }    
-}
-
-
-
 
 
 

@@ -2,40 +2,38 @@ import {
     levelsBox, buttonStart, buttonsBox, indicatorOfRound,
     levelEasy, levelMedium, levelHard, repeatSequence, newGame, btnNext, input, feedbackWrong, feedbackRight, feedbackWin
 } from "./generate_elements.js";
-import { setAttribute, removeAttribute, endGame } from "./functions.js";
+import { setAttribute, removeAttribute } from "./functions.js";
 import { createKeyboardEasy, createKeyboardMedium, createKeyboardHard } from "./keyboard.js";
 import { highlightTheSequence } from "./game_sequences.js";
 import { getRandomElements } from "./game_sequences.js";
 import { letters, digits, lettersAndDigits } from "./keyboard.js";
-// import { checkTheInputSequence } from "./functions.js";
 
 let keyboardElements = digits;
 let randomElements;
 let round = 1;
-let keyboard;
 let level = 'easy';
 let pressedKeys = [];
 
-let eventHandled = false;   //флаг для проверки обработки только одного события
+let eventHandled = false;   //флаг для проверки (обработки) только одного события
 let keyPressed = false;     //флаг для обработки только первого обнаруженного нажатия
 
 let stopInput = false;      //флаг для прекращения подсветки клавиш при вводе при неправильном ответе
-let currentIndex = 0;   //для проверки введенной буквы/цифры
+let currentIndex = 0;       //для проверки введенной буквы/цифры co сгенерированной последовательностью (randomElements)
 
-keyboard = createKeyboardEasy();
+createKeyboardEasy();
 
 //прорисовка клавиатуры в зависимости от выбранного уровня
 levelsBox.addEventListener('click', (event) => {
     if (event.target === (levelEasy)) {
-        keyboard = createKeyboardEasy();
+        createKeyboardEasy();
         keyboardElements = digits;
         level = 'easy';
     } else if (event.target === levelMedium) {
-        keyboard = createKeyboardMedium();
+        createKeyboardMedium();
         keyboardElements = letters;
         level = 'medium';
     } else if (event.target === levelHard) {
-        keyboard = createKeyboardHard();
+        createKeyboardHard();
         keyboardElements = lettersAndDigits;
         level = 'hard';
     }
@@ -73,8 +71,6 @@ newGame.addEventListener('click', () => {
     stopInput = false;
 });
 
-console.log(stopInput)
-
 //логика при нажатии кнопки повторение последовательности
 repeatSequence.addEventListener('click', () => {
     repeatSequence.setAttribute('disabled', '');
@@ -101,27 +97,31 @@ btnNext.addEventListener('click', () => {
         indicatorOfRound.textContent = `${round}/5 round`;                  //смена индикатора раундов
         randomElements = getRandomElements(keyboardElements, round);
         highlightTheSequence({ arr: randomElements, buttons: [newGame], btn: input });
-        console.log('randomElements: ' + randomElements);
     }
+    console.log('randomElements: ' + randomElements);
 });
-
 
 
 // обработчик события клавиатуры
 let handleKeyPress = (event) => {
-    if (!input.disabled && !stopInput === true) {                                  //пока работает функция highlightTheSequence
-        if (!eventHandled) {                                                       //обработка для первого обнаруженного события (мышь или клавиатура)
+    //пока работает функция highlightTheSequence
+    if (!input.disabled && !stopInput === true) {
+        //обработка для первого обнаруженного события (мышь или клавиатура)                        
+        if (!eventHandled) {
             eventHandled = true;
-            if (!keyPressed) {                                                     //обработка для первого обнаруженного нажатия клавиши
+            //обработка для первого обнаруженного нажатия клавиши
+            if (!keyPressed) {
                 keyPressed = true;
-
-                const isAlphanumeric = /^[a-zA-Z0-9\u0400-\u04FF\u0500-\u052F]$/;  //проверка на буквы и цифры
+                //проверка на буквы и цифры
+                const isAlphanumeric = /^[a-zA-Z0-9\u0400-\u04FF\u0500-\u052F]$/;
                 if (isAlphanumeric.test(event.key)) {
-                    if (level === 'easy') {                                    //в зависимости от уровня игнорируются другие клавиши
+                    //в зависимости от уровня игнорируются другие клавиши
+                    if (level === 'easy') {
                         if (+event.key >= 0 && +event.key <= 9) {
                             pressedKeys.push(+(event.key));
                             input.value += event.key;
-                            document.getElementById(`${event.key}`).style.backgroundColor = 'red';    //подсветка клавиш при нажатии
+                            //подсветка клавиш при нажатии
+                            document.getElementById(`${event.key}`).style.backgroundColor = 'red';
                             if (+event.key === randomElements[currentIndex]) {
                                 currentIndex++;
                             }
@@ -167,15 +167,15 @@ let handleKeyPress = (event) => {
                             }
                         }
                     }
-                    console.log('pressed keys: ' + pressedKeys);
                 }
-            } console.log('current round outer: ' + round);
+            }
         }
         if (currentIndex === randomElements.length && round < 5) {
             stopInput = true;
             feedbackRight.classList.remove('feedback--hide');
             repeatSequence.classList.add('btn--hide');
             btnNext.classList.remove('btn--hide');
+            //при успешном завершении игры:
         } else if (currentIndex === randomElements.length && round === 5) {
             repeatSequence.setAttribute('disabled', '');
             repeatSequence.classList.add('btn--disabled');
@@ -191,11 +191,11 @@ let handleKeyPress = (event) => {
 let handleMouseClick = (event) => {
     if (!input.disabled && !stopInput === true) {
         if (!eventHandled) {
-            eventHandled = true;                                //флаг, что событие уже обработано
+            //флаг, что событие уже обработано
+            eventHandled = true;
 
             if (event.target.classList.contains('letter')) {
                 event.target.style.backgroundColor = 'blue';
-
                 if ((/[a-zA-Z]/).test(event.target.id)) {
                     pressedKeys.push(event.target.id.toUpperCase());
                     input.value += event.target.id;
@@ -214,8 +214,7 @@ let handleMouseClick = (event) => {
                         feedbackWrong.classList.remove('feedback--hide');
                         stopInput = true;
                     }
-                } console.log('pressed keys: ' + pressedKeys);
-                console.log('stop input: ' + stopInput);
+                }
             }
         }
         if (currentIndex === randomElements.length && round < 5) {
@@ -229,7 +228,7 @@ let handleMouseClick = (event) => {
             feedbackWin.classList.remove('feedback--hide');
             stopInput = true;
         }
-    } console.log('current index mouse: ' + currentIndex)
+    }
 }
 
 // функция для сброса флага при отпускании клавиши или кнопки мыши
@@ -254,7 +253,6 @@ document.addEventListener('keyup', (event) => {
                     document.getElementById(`${event.key}`).style.backgroundColor = '';
                 }
             }
-
             if (level === 'medium') {
                 if ((/[a-zA-Z]/).test(event.key)) {
                     document.getElementById(`${event.key.toUpperCase()}`).style.backgroundColor = '';
@@ -271,7 +269,7 @@ document.addEventListener('keyup', (event) => {
     }
 });
 
-//отключение подсветки при mouseup
+//отключение подсветки клавиш при mouseup
 document.addEventListener('mouseup', (event) => {
     event.target.style.backgroundColor = '';
 });

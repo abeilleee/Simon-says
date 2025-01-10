@@ -1,9 +1,5 @@
 import { createElement } from "./create_elements.js";
-import { createKeyboardEasy, createKeyboardMedium, createKeyboardHard } from "./keyboard.js";
 import { createRadioButton } from "./create_elements.js";
-import { setAttribute } from "./functions.js";
-import { removeAttribute } from "./functions.js";
-
 
 //header
 const header = createElement({ tag: 'header', parent: document.body, classes: ['header'] });
@@ -19,16 +15,19 @@ export const wrapperBox = createElement({ tag: 'button', parent: wrapper, classe
 export const buttonStart = createElement({ tag: 'button', text: 'Start', parent: wrapperBox, classes: ['btn', 'btn--primary'] });
 export const feedbackWrong = createElement({
     tag: 'div', text: 'Incorrect answer!',
-    parent: wrapperBox, classes: ['feedback', 'feedback--incorrect', 'feedback--hide']
+    parent: wrapperBox,
+    classes: ['feedback', 'feedback--incorrect', 'feedback--hide']
 });
 export const feedbackRight = createElement({
     tag: 'div', text: 'Correct answer!',
-    parent: wrapperBox, classes: ['feedback', 'feedback--correct', 'feedback--hide']
+    parent: wrapperBox,
+    classes: ['feedback', 'feedback--correct', 'feedback--hide']
 });
 
 export const feedbackWin = createElement({
     tag: 'div', text: 'You win!',
-    parent: wrapperBox, classes: ['feedback', 'feedback--win', 'feedback--hide']
+    parent: wrapperBox,
+    classes: ['feedback', 'feedback--win', 'feedback--hide']
 });
 
 export const levelsBox = createElement({ tag: 'div', parent: wrapper, classes: ['level__box'] });
@@ -58,7 +57,11 @@ export const levelHard = createRadioButton({
 
 export const keyboardWrapper = createElement({ tag: 'div', parent: wrapper, classes: ['keyboard__wrapper'] });
 
-export const input = createElement({ tag: 'input', text: '', parent: wrapper, classes: ['input', 'btn--hide'] });
+export const input = createElement({
+    tag: 'input', text: '',
+    parent: wrapper,
+    classes: ['input', 'btn--hide']
+});
 input.setAttribute('readonly', '');
 input.setAttribute('disabled', '');
 export const buttonsBox = createElement({ tag: 'div', parent: wrapper, classes: ['btn--hide', 'btn__box'] });
