@@ -46,6 +46,14 @@
     &--disabled:hover {
         cursor: default;
     }
+
+    @media screen and (max-width: 600px) {
+        &{
+            font-size: 12px;
+            padding: 10px;
+            width: 140px;
+        }
+    }
 }
 
 .hidden {
