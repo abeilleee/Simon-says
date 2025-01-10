@@ -3,9 +3,15 @@
     align-items: center;
     padding: 20px;
     width: 100%;
-    gap: 20px;
+    gap: 30px;
 
     &__box {
         height: 62px;
+    }
+
+    @media screen and (max-width:768px) {
+        & {
+            gap: 10px;
+        }
     }
 }

@@ -87,6 +87,11 @@ legend {
   padding: 0 82px;
   margin: 0 auto;
 }
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+}
 
 .wrapper {
   display: flex;
@@ -95,10 +100,15 @@ legend {
   align-items: center;
   padding: 20px;
   width: 100%;
-  gap: 20px;
+  gap: 30px;
 }
 .wrapper__box {
   height: 62px;
+}
+@media screen and (max-width: 768px) {
+  .wrapper {
+    gap: 10px;
+  }
 }
 
 .header__box {
@@ -222,6 +232,12 @@ body {
 }
 .letter:hover {
   cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  .letter {
+    width: 40px;
+    height: 50px;
+  }
 }
 
 .input {
