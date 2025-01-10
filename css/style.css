@@ -183,6 +183,11 @@ body {
   color: #402ffc;
 }
 
+.level--disabled {
+  cursor: none;
+  opacity: 60%;
+}
+
 .keyboard {
   display: flex;
   flex-direction: column;

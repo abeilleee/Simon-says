@@ -10,5 +10,10 @@
 }
 
 .level--checked {
-    color: $primary-color-blue;
+    color: $primary-color-blue;    
+}
+
+.level--disabled {
+    cursor: none;
+    opacity: 60%;
 }

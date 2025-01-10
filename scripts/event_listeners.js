@@ -26,6 +26,7 @@ let labelHard = document.querySelector('label[for="hard"]');
 createKeyboardEasy();
 labelEasy.classList.add('level--checked');
 
+
 //прорисовка клавиатуры в зависимости от выбранного уровня
 levelsBox.addEventListener('click', (event) => {
     if (event.target === levelEasy) {
@@ -58,8 +59,11 @@ buttonStart.addEventListener('click', () => {
     indicatorOfRound.classList.remove('btn--hide');
     input.classList.remove('btn--hide');
     setAttribute(levelEasy);
+    labelEasy.classList.add('level--disabled');
     setAttribute(levelMedium);
+    labelMedium.classList.add('level--disabled');
     setAttribute(levelHard);
+    labelHard.classList.add('level--disabled');
 
     randomElements = getRandomElements(keyboardElements, round);
     highlightTheSequence({ arr: randomElements, buttons: [newGame, repeatSequence], btn: input });
@@ -70,8 +74,11 @@ newGame.addEventListener('click', () => {
     feedbackWrong.classList.add('feedback--hide');
     feedbackWin.classList.add('feedback--hide');
     removeAttribute(levelEasy);
+    labelEasy.classList.remove('level--disabled');
     removeAttribute(levelMedium);
+    labelMedium.classList.remove('level--disabled');
     removeAttribute(levelHard);
+    labelHard.classList.remove('level--disabled');
     buttonsBox.classList.add('btn--hide');
     input.classList.add('btn--hide');
     round = 1;
