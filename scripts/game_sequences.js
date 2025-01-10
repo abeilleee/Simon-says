@@ -30,7 +30,7 @@ export let getRandomElements = (arr, round) => {
 export let highlightTheSequence = (options) => {
 
     const { arr, buttons = [], btn } = options;
-    let time = 300;
+    let time = 700;
 
     if (buttons.length > 0) {
         buttons.forEach((btn) => {
@@ -47,9 +47,9 @@ export let highlightTheSequence = (options) => {
             element.style.background = 'violet';
             setTimeout(function () {
                 element.style.background = '';
-            }, 300);
+            }, 350);
         }, time);
-        time += 300;
+        time += 700;
     }
     setTimeout(() => {
         if (buttons.length > 0) {                      //возвращаю активность кнопкам (new game, repeat) после отработки функции
