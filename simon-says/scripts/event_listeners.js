@@ -123,7 +123,6 @@ btnNext.addEventListener('click', () => {
         randomElements = getRandomElements(keyboardElements, round);
         highlightTheSequence({ arr: randomElements, buttons: [newGame, repeatSequence], btn: input, keyboardLetters });
     }
-    console.log('randomElements: ' + randomElements);
 });
 
 
