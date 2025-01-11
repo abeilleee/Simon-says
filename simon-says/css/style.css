@@ -156,6 +156,7 @@ body {
   height: 60px;
   border: 3px solid #402ffc;
   box-shadow: 0 0 7px 0px rgba(255, 255, 255, 0.3098039216);
+  transition: all 0.3s ease;
 }
 .btn--primary {
   border: none;
@@ -201,7 +202,7 @@ body {
   justify-content: space-between;
   margin-top: 27px;
 }
-.level__box input {
+.level__box label {
   transition: all 0.3s ease;
 }
 
@@ -257,6 +258,7 @@ body {
   text-align: center;
   background-color: rgba(130, 127, 127, 0.649);
   box-shadow: 20px 20px 20px 0px #0f0f0f;
+  transition: all 0.3s ease;
 }
 @media screen and (max-width: 600px) {
   .letter {
