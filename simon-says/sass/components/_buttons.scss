@@ -4,10 +4,11 @@
     gap: 40px;
 
     @media screen and (max-width: 600px) {
-        &{
-            gap: 10px;
+        & {
+            gap: 20px;
         }
-    }    
+        
+    }
 }
 
 .btn {
@@ -17,6 +18,7 @@
     border-radius: 10px;
     padding: 15px;
     min-width: 170px;
+    height: 60px;
     border: 3px solid $primary-color-blue;
     box-shadow: 0 0 7px 0px #ffffff4f;
 
@@ -51,14 +53,6 @@
 
     &--disabled:hover {
         cursor: default;
-    }
-
-    @media screen and (max-width: 600px) {
-        &{
-            font-size: 12px;
-            padding: 5px;
-            width: 120px;
-        }
     }
 }
 
