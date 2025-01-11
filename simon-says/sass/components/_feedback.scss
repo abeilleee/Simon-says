@@ -12,6 +12,7 @@
         color: transparent;
         background-clip: text;
         background-image: linear-gradient(to right, #ff750b, #c30b0b, #ee2e2e);
+        transition: all 0.5s ease;
     }
 
     &--win {
