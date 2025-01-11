@@ -37,6 +37,7 @@ levelsBox.addEventListener('click', (event) => {
         labelEasy.classList.add('level--checked');
         labelMedium.classList.remove('level--checked');
         labelHard.classList.remove('level--checked');
+        keyboardLetters = document.querySelectorAll('.letter');
     } else if (event.target === levelMedium) {
         createKeyboardMedium();
         keyboardElements = letters;
@@ -44,6 +45,7 @@ levelsBox.addEventListener('click', (event) => {
         labelMedium.classList.add('level--checked');
         labelEasy.classList.remove('level--checked');
         labelHard.classList.remove('level--checked');
+        keyboardLetters = document.querySelectorAll('.letter');
     } else if (event.target === levelHard) {
         createKeyboardHard();
         keyboardElements = lettersAndDigits;
@@ -51,6 +53,7 @@ levelsBox.addEventListener('click', (event) => {
         labelHard.classList.add('level--checked');
         labelEasy.classList.remove('level--checked');
         labelMedium.classList.remove('level--checked');
+        keyboardLetters = document.querySelectorAll('.letter');
     }
 });
 
@@ -90,6 +93,7 @@ newGame.addEventListener('click', () => {
     feedbackWrong.classList.add('feedback--hide');
     feedbackRight.classList.add('feedback--hide');
     stopInput = true;
+    removeHover(keyboardLetters);
 });
 
 //логика при нажатии кнопки повторение последовательности
