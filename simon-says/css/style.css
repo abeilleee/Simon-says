@@ -108,12 +108,11 @@ legend {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
   width: 100%;
-  gap: 30px;
 }
 .wrapper__box {
-  height: 62px;
+  height: 50px;
 }
 @media screen and (max-width: 768px) {
   .wrapper {
@@ -126,7 +125,7 @@ legend {
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  padding: 20px;
+  padding: 15px;
 }
 .header__title {
   text-align: center;
@@ -162,7 +161,7 @@ body {
   align-items: center;
   border-radius: 10px;
   padding: 15px;
-  width: 180px;
+  min-width: 170px;
   border: 3px solid #402ffc;
   box-shadow: 0 0 7px 0px rgba(255, 255, 255, 0.3098039216);
 }
@@ -210,6 +209,7 @@ body {
   flex-direction: row;
   gap: 10px;
   justify-content: space-between;
+  margin-top: 30px;
 }
 
 .input__radio {
@@ -234,7 +234,7 @@ body {
 .keyboard__wrapper {
   display: flex;
   align-items: center;
-  height: 280px;
+  padding: 40px;
 }
 .keyboard__row {
   display: flex;
@@ -278,8 +278,9 @@ body {
 .input {
   border: 1px solid #402ffc;
   border-radius: 8px;
-  width: 350px;
+  min-width: 300px;
   padding: 4px;
+  margin-bottom: 20px;
 }
 
 .feedback {

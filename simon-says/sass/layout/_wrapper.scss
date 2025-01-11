@@ -1,12 +1,11 @@
 .wrapper {
     @include flex-column-center;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     width: 100%;
-    gap: 30px;
 
     &__box {
-        height: 62px;
+        height: 50px;
     }
 
     @media screen and (max-width:768px) {
