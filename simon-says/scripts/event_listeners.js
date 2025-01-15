@@ -75,6 +75,8 @@ buttonStart.addEventListener('click', () => {
 
 newGame.addEventListener('click', () => {
     buttonStart.classList.remove('btn--hide');
+    btnNext.classList.add('btn--hide');
+    repeatSequence.classList.remove('btn--hide');
     feedbackWrong.classList.add('feedback--hide');
     feedbackWin.classList.add('feedback--hide');
     removeAttribute(levelEasy);
