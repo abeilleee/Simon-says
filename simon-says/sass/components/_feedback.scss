@@ -1,0 +1,27 @@
+.feedback{
+    font-size: 30px;
+    justify-content: center;
+
+    &--correct {
+        color: transparent;
+        background-clip: text;
+        background-image: linear-gradient(to right, #0bbeff, #3dee52, #2ed1ee);
+    }
+
+    &--incorrect {
+        color: transparent;
+        background-clip: text;
+        background-image: linear-gradient(to right, #ff750b, #c30b0b, #ee2e2e);
+        transition: all 0.5s ease;
+    }
+
+    &--win {
+        color: transparent;
+        background-clip: text;
+        background-image: linear-gradient(to right, #0b44ff, #3dee63, #2ed1ee);
+    }
+
+    &--hide {
+        display: none;
+    }
+}

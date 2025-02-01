@@ -1,0 +1,22 @@
+.header {
+
+    &__box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        padding: 15px;
+
+        @media screen and (max-width:450px) {
+            & {
+                padding: 10px;
+            }
+        }
+    }
+
+    &__title {
+        text-align: center;
+        font-size: 1.7rem;
+        font-weight: 600;
+    }
+}
