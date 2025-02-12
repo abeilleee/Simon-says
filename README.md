@@ -1,6 +1,6 @@
 [Deploy](https://abeilleee.github.io/Simon-says/simon-says/)
 
-![]https://github.com/abeilleee/Simon-says/blob/main/simon-says/video.gif
+![video](https://github.com/abeilleee/Simon-says/blob/main/simon-says/video.gif)
 
 
 
